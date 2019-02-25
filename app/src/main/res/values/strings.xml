@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AndroidProject</string>
+    <string name="choose_profile">Valitse profiili</string>
+    <string name="new_profile">Uusi profiili</string>
 </resources>
