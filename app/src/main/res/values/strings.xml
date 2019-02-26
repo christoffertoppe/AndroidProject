@@ -6,4 +6,5 @@
     <string name="age_text">Ikä</string>
     <string name="cancel_text">Peruuta</string>
     <string name="save_text">Tallenna</string>
+    <string name="snackbar_new_profile_created">Uusi käyttäjä luotu!</string>
 </resources>

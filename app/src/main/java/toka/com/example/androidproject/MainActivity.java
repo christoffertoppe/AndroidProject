@@ -2,15 +2,15 @@ package toka.com.example.androidproject;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
             int ageToNumber = Integer.parseInt(age);
             profile.addProfile(name, ageToNumber);
             updateUI();
+            Snackbar mySnackbar = Snackbar.make(findViewById(R.id.snackBarLayout), R.string.snackbar_new_profile_created, Snackbar.LENGTH_LONG);
+            mySnackbar.show();
+
         } else if (view == findViewById(R.id.cancelButton)) {
             updateUI();
         }

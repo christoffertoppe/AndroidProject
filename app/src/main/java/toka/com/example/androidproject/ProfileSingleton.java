@@ -13,15 +13,15 @@ public class ProfileSingleton {
 
     private ProfileSingleton() {
         profiles = new ArrayList<Profile>();
-        profiles.add(new Profile("Miikka",12));
-        profiles.add(new Profile("Juho",6));
-        profiles.add(new Profile("Mira",5));
-        profiles.add(new Profile("Tuukka",8));
-        profiles.add(new Profile("Anna",45));
+        profiles.add(new Profile("Miikka", 12));
+        profiles.add(new Profile("Juho", 6));
+        profiles.add(new Profile("Mira", 5));
+        profiles.add(new Profile("Tuukka", 8));
+        profiles.add(new Profile("Anna", 45));
     }
 
     public void addProfile(String name, int age) {
-        profiles.add(new Profile(name,age));
+        profiles.add(new Profile(name, age));
     }
 
     public List<Profile> getProfiles() {

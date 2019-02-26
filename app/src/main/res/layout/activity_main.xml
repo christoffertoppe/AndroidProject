@@ -1,41 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/snackBarLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/profileView"
+    <!-- Here are the existing layout elements, now wrapped in
+         a CoordinatorLayout -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="177dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:gravity="center"
-        android:text="@string/choose_profile"
-        android:textSize="56sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
 
-    <ListView
-        android:id="@+id/profileListView"
-        android:layout_width="match_parent"
-        android:layout_height="444dp"
-        android:layout_weight="5"
-        android:divider="@color/colorTransparent"
-        android:dividerHeight="50dp"
-        android:paddingLeft="10dip"
-        android:paddingTop="1dip"
-        android:paddingRight="10dip" />
+        <TextView
+            android:id="@+id/profileView"
+            android:layout_width="match_parent"
+            android:layout_height="177dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:gravity="center"
+            android:text="@string/choose_profile"
+            android:textSize="56sp" />
 
-    <Button
-        android:id="@+id/newProfileButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="1"
-        android:onClick="buttonPressed"
-        android:text="@string/new_profile" />
+        <ListView
+            android:id="@+id/profileListView"
+            android:layout_width="match_parent"
+            android:layout_height="444dp"
+            android:layout_weight="5"
+            android:divider="@color/colorTransparent"
+            android:dividerHeight="50dp"
+            android:paddingLeft="10dip"
+            android:paddingTop="1dip"
+            android:paddingRight="10dip" />
 
+        <Button
+            android:id="@+id/newProfileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:onClick="buttonPressed"
+            android:text="@string/new_profile" />
 
-</LinearLayout>
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
