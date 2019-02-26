@@ -1,6 +1,8 @@
 package toka.com.example.androidproject;
 
+import android.app.Person;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -13,6 +15,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     ProfileSingleton profile = ProfileSingleton.getInstance();
     private static String TAG = "Troubleshoot";
@@ -22,6 +30,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = mPrefs.getString("Profiles", "");
+        Type type = new TypeToken < List <Profile>> () {}.getType();
+        List <Profile> savedProfiles = new Gson().fromJson(json, type);
+        profile.setProfiles(savedProfiles);
+
+
 
         TextView tv = findViewById(R.id.profileView);
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
@@ -82,5 +99,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(nextActivity);
             }
         });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        List<Profile> profileList = profile.getProfiles();
+        SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
+        String object = gson.toJson(profileList);
+        prefsEditor.putString("Profiles", object);
+        prefsEditor.commit();
     }
 }
