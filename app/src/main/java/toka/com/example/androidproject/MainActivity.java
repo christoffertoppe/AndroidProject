@@ -22,34 +22,37 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 /**
- * MainActivity käsittelee käyttäjäprofiilien valitsemista, luontia ja poistamista
+ * MainActivity käsittelee käyttäjäprofiilien valitsemista, luontia ja poistamista.
  * Jokaiseen käyttäjäprofiiliin on talletettu käyttäjän henkilökohtaiset tiedot,
- * jotka sovellus kirjaa muistiin suljettaessa
+ * jotka sovellus kirjaa muistiin suljettaessa.
  *
  * @author Samuli Salin
  * @version 1.0
  */
 
 public class MainActivity extends AppCompatActivity {
-    /**
-     * @param profile ProfileSingleton luodaan viittaus ProfileSingleton luokkaan käyttäjäprofiilien hallintaa varten
-     * @param secondViewActive boolean boolean-arvo, jonka avulla määritellään
-     * onko profiilien valitsemiseen tarkoitettu layout vai luomiseen/poistamiseen tarkoitettu layout käytössä
-     * @param TAG String vianetsinnässä käytettävä staattinen arvo
-     * @param EXTRA String Android paketin viittaamiseen käytetty arvo aktiviteetin vaihdossa
-     */
-    ProfileSingleton profile = ProfileSingleton.getInstance();
+
+    private ProfileSingleton profile = ProfileSingleton.getInstance();
     private boolean secondViewActive = false;
 
     private static String TAG = "Troubleshoot";
     public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";
 
     /**
-     * Määrittelee operaatiot, jotka tehdään OnCreate -kutsun yhteydessä
-     * Esim. Haetaan aiemmin muistiin tallennettu data käyttäen avuksi Gson -kirjastoa
-     * ja päivitetään käyttöliittymä näyttämään ListView näkymä
-     * profiileista
-     * @param savedInstanceState viittaus Bundle-objektiin, joka annetaan paramterina
+     * Luo tyhjän MainActivityn.
+     */
+
+    public MainActivity() {
+
+    }
+
+    /**
+     * Määrittelee operaatiot, jotka tehdään OnCreate -kutsun yhteydessä.
+     * Esim. haetaan aiemmin muistiin tallennettu data käyttäen avuksi Gson -kirjastoa
+     * ja päivitetään käyttöliittymä näyttämään ListView -näkymä
+     * profiileista.
+     *
+     * @param savedInstanceState viittaus Bundle-objektiin, joka annetaan metodin paramterina
      */
 
     @Override
@@ -69,8 +72,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Määrittelee mitä nappien painamisesta ruudulla tapahtuu
-     * @param view kertoo mikä view on käytössä
+     * Määrittelee mitä ruudulla tapahtuu kun nappia painetaan.
+     * Nappeja on yhteensä neljä, joilla kaikilla on omat operaationsa, jotka on
+     * määritelty erillisillä if-lauseilla.
+     *
+     * @param view kertoo mikä näkymä(view) on käytössä
      */
 
     // Luodaan nappien painamisesta tapahtuvat operaatiot
@@ -132,7 +138,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Päivittää käyttöliittymän päänäkymään, josta käyttäjä voi valita profiilin
+     * Päivittää käyttöliittymän päänäkymään, josta käyttäjä voi valita profiilin.
+     * Tekstikentille haetaan mukautettu fontti.
      */
     private void updateUI() {
         secondViewActive = false;
@@ -156,12 +163,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Tallentaa käyttäjäprofiilit muistiin onPause -metodin yhteydessä
-     * Tallentamisessa käytetään hyödyksi Gson-kirjastoa
+     * Tallentaa käyttäjäprofiilit muistiin onPause -metodin yhteydessä.
+     * Tallentamisessa käytetään hyödyksi Gson-kirjastoa.
      */
 
     // Tietojen tallentaminen Gson-kirjastoa avuksi käyttäen
-
     @Override
     public void onPause() {
         super.onPause();
@@ -176,10 +182,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *Määrittelee Back-napin toiminnan tilanteessa, jolloin päänäkymän layout ei ole aktiivinen
+     * Määrittelee Back-napin toiminnan tilanteessa, jolloin päänäkymän layout ei ole aktiivinen.
      * Koska MainActivity koostuu useista vaihtuvista layouteista MainActivityn sisällä
      * joudutaan tilanteissa, joissa profiilin luonti/profiilin poisto -layout on käytössä muutamaan
-     * Back-napin toimintaa
+     * Back-napin toimintaa.
      */
 
     // Ohjelmoidaan Androidin sisäinen "Back"-nappi vaihtamaan näkymää, koska Profiilinäkymä on tehty vain yhden Activityn sisälle

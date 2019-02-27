@@ -14,8 +14,8 @@ public class Profile {
     private int brushingTotal;
 
     /**
-     * Luodaan käyttäjäolio, jolle annetaan luonnin yhteydessä nimi ja ikä
-     * Uutta käyttäjää luodessa hampaiden pesuaika ja pesukerrat ovat aina 0
+     * Luodaan käyttäjäolio, jolle annetaan luonnin yhteydessä nimi ja ikä.
+     * Uutta käyttäjää luodessa hampaiden pesuaika ja pesukerrat ovat aina 0.
      *
      * @param name String käyttäjän nimi
      * @param age  int käyttäjän ikä
@@ -31,21 +31,21 @@ public class Profile {
     /**
      * Pitää yllä yhteensä hampaiden pesuun käytettyä aikaa sekunteina
      *
-     * @param time int ykisttäisellä kerralla hampaiden pesemiseen käytetty aika sekunteina
+     * @param time int yksittäisellä kerralla hampaiden pesemiseen käytetty aika sekunteina
      */
     private void addBrushingSeconds(int time) {
         this.brushingSeconds += time;
     }
 
     /**
-     * Pitää yllä yksittäisiä hampaiden pesukertoja
+     * Pitää yllä yksittäisiä hampaiden pesukertoja.
      */
     private void addBrushingTotal() {
         this.brushingTotal++;
     }
 
     /**
-     * Palauttaa käyttäjän nimen kysyttäessä
+     * Palauttaa käyttäjän nimen.
      *
      * @return String palauttaa käyttäjän nimen
      */
@@ -55,7 +55,7 @@ public class Profile {
     }
 
     /**
-     * Käyttäjän nimen muokkaaminen
+     * Käyttäjän nimen muokkaaminen.
      *
      * @param name String käyttäjän uusi nimi
      */
@@ -65,7 +65,7 @@ public class Profile {
     }
 
     /**
-     * Palauttaa käyttäjän iän
+     * Palauttaa käyttäjän iän.
      *
      * @return int käyttäjän ikä kokonaislukuna
      */
@@ -75,7 +75,7 @@ public class Profile {
     }
 
     /**
-     * Asettaa käyttäjälle uuden iän
+     * Asettaa käyttäjälle uuden iän.
      *
      * @param age int käyttäjän uusi ikä
      */
@@ -85,7 +85,7 @@ public class Profile {
     }
 
     /**
-     * Palauttaa käyttäjän hampaiden pesemiseen kokonaisuudessaan käyttämän ajan
+     * Palauttaa käyttäjän hampaiden pesemiseen kokonaisuudessaan käyttämän ajan.
      *
      * @return int hampaiden pesemiseen käytetty aika sekunteina
      */
@@ -95,7 +95,7 @@ public class Profile {
     }
 
     /**
-     * Asettaa käyttäjän hampaiden pesemiseen kokonaisuudessaan käyttämän ajan
+     * Asettaa käyttäjän hampaiden pesemiseen kokonaisuudessaan käyttämän ajan.
      *
      * @param brushingMinutes int hampaiden pesemiseen käytetty uusi aika sekunteina
      */
@@ -105,7 +105,7 @@ public class Profile {
     }
 
     /**
-     * Käyttäjän hampaiden pesukerrat kokonaisuudessaan
+     * Käyttäjän hampaiden pesukerrat kokonaisuudessaan.
      *
      * @return int käyttäjän hampaiden pesukerrat kokonaislukuna
      */
@@ -115,7 +115,7 @@ public class Profile {
     }
 
     /**
-     * Asettaa käyttäjän hampaiden pesukertojen määrän
+     * Asettaa käyttäjän hampaiden pesukertojen määrän.
      *
      * @param brushingTotal int uusi pesukertojen määrä kokonaislukuna
      */
@@ -125,7 +125,7 @@ public class Profile {
     }
 
     /**
-     * Palauttaa käyttäjän nimen
+     * Palauttaa käyttäjän nimen.
      *
      * @return String käyttäjän nimi
      */

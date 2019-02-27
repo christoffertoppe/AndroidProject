@@ -7,8 +7,8 @@ import java.util.List;
 
 /**
  * Profile-luokasta määritelty Singleton-luokka, joka pitää sisällään
- * käyttäjistä luodun listan
- * ProfileSingleton-luokan avulla tiedot käyttäjistä pidetään yhdessä paikassa
+ * käyttäjistä luodun listan.
+ * ProfileSingleton-luokan avulla tiedot käyttäjistä pidetään yhdessä paikassa.
  *
  * @author Samuli Salin
  * @version 1.0
@@ -18,9 +18,9 @@ public class ProfileSingleton {
     private static final ProfileSingleton ourInstance = new ProfileSingleton();
 
     /**
-     * Profile-luokkaan viitatessa käytettävä metodi
+     * Profile-luokkaan viitatessa käytettävä metodi.
      *
-     * @return ProfileSingleton Palauttaa uuden ProfileSingletonin
+     * @return ProfileSingleton palauttaa uuden ProfileSingletonin
      */
 
     public static ProfileSingleton getInstance() {
@@ -28,7 +28,7 @@ public class ProfileSingleton {
     }
 
     /**
-     * Luokan yksityinen konstruktori, joka luo uuden ArrayListin
+     * Luokan yksityinen konstruktori, joka luo uuden ArrayListin.
      */
 
     private ProfileSingleton() {
@@ -36,7 +36,7 @@ public class ProfileSingleton {
     }
 
     /**
-     * Luo uuden profiilin ja lisää sen olemassaolevalle listalle
+     * Luo uuden profiilin ja lisää sen olemassaolevalle listalle.
      *
      * @param name String käyttäjän antama nimi
      * @param age  int käyttäjän antama ikä
@@ -52,7 +52,7 @@ public class ProfileSingleton {
     }
 
     /**
-     * Poistaa käyttäjäprofiilin listalta
+     * Poistaa käyttäjäprofiilin listalta.
      *
      * @param name String käyttäjän antama poistettavan profiilin nimi
      * @return boolean palauttaa True tai False riippuen onnistuiko profiilin poisto
@@ -69,9 +69,9 @@ public class ProfileSingleton {
     }
 
     /**
-     * Palauttaa käyttäjistä koostuvan listan
+     * Palauttaa käyttäjistä koostuvan listan.
      *
-     * @return List käyttäjälista
+     * @return List<Person> käyttäjälista
      */
 
     public List<Profile> getProfiles() {
@@ -79,10 +79,10 @@ public class ProfileSingleton {
     }
 
     /**
-     * Asettaa listan arvot
-     * Käytetään profiilien hakemisessa tallennustilasta
+     * Asettaa listan arvot.
+     * Käytetään profiilien hakemisessa tallennustilasta.
      *
-     * @param profiles List muistista haettu käyttäjälista
+     * @param profiles List<Person> muistista haettu käyttäjälista
      */
 
     public void setProfiles(List<Profile> profiles) {
@@ -90,7 +90,7 @@ public class ProfileSingleton {
     }
 
     /**
-     * Hakee yksittäisen käyttäjän käyttäjälistalta
+     * Hakee yksittäisen käyttäjän käyttäjälistalta.
      *
      * @param i int käyttäjän indeksi
      * @return Profile yksittäinen profiili
