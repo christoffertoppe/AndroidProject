@@ -45,6 +45,11 @@ public class ProfileSingleton {
 
     public boolean addProfile(String name, int age) {
         if ((age > 0 && age < 100) && (name.length() > 0 && name.length() < 13)) {
+            for (int i = 0; i < profiles.size(); i++) {
+                if (name.equalsIgnoreCase(getProfile(i).getName())) {
+                    return false;
+                }
+            }
             profiles.add(new Profile(name, age));
             return true;
         }

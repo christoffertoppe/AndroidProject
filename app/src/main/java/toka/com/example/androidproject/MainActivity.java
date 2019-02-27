@@ -109,14 +109,14 @@ public class MainActivity extends AppCompatActivity {
             }
         } else if (view == findViewById(R.id.saveButton)) {
             EditText nameText = (EditText) findViewById(R.id.insertNameText);
-            String name = nameText.getText().toString();
+            String name = nameText.getText().toString().trim();
 
             EditText ageText = (EditText) findViewById(R.id.insertAgeText);
-            String age = ageText.getText().toString();
+            String age = ageText.getText().toString().trim();
             int ageToNumber = Integer.parseInt(age);
 
             if (!(profile.addProfile(name, ageToNumber))) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Tarkista tietojen ehdot!", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getApplicationContext(), "Tarkista tietojen ehdot tai nimi on jo olemassa!", Toast.LENGTH_LONG);
                 toast.show();
             } else {
                 updateUI();
