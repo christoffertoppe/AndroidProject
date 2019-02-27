@@ -23,7 +23,7 @@ public class ProfileSingleton {
     }
 
     public boolean addProfile(String name, int age) {
-        if (age > 0 && age < 100) {
+        if ((age > 0 && age < 100) && (name.length() > 0 && name.length() < 13)) {
             profiles.add(new Profile(name, age));
             return true;
         }

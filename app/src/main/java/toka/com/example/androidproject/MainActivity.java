@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 updateUI();
                 toast.show();
             } else {
-                Toast toast = Toast.makeText(getApplicationContext(), "Käyttäjää ei löytynyt!", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getApplicationContext(), "Käyttäjää ei löytynyt!\nTarkista oikeinkirjoitus", Toast.LENGTH_LONG);
                 toast.show();
             }
         } else if (view == findViewById(R.id.saveButton)) {
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             int ageToNumber = Integer.parseInt(age);
 
             if (!(profile.addProfile(name, ageToNumber))) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Iän täytyy olla väliltä 1-99!", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getApplicationContext(), "Tarkista tietojen ehdot!", Toast.LENGTH_LONG);
                 toast.show();
             } else {
                 updateUI();
