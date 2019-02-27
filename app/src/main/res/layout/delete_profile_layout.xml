@@ -6,78 +6,54 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/newProfileView"
+        android:id="@+id/deleteProfileView"
         android:layout_width="match_parent"
         android:layout_height="177dp"
+        android:layout_marginTop="4dp"
         android:gravity="center"
-        android:text="@string/new_profile"
+        android:text="@string/delete_profile"
         android:textSize="56sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/newUserView"
+        android:id="@+id/deleteNameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/name_text"
-        android:textSize="36sp"
+        android:layout_marginTop="128dp"
+        android:text="@string/delete_profile_text"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.372"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newProfileView" />
+        app:layout_constraintTop_toBottomOf="@+id/deleteProfileView" />
 
     <EditText
-        android:id="@+id/insertNameText"
+        android:id="@+id/insertDeleteName"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newUserView" />
-
-    <TextView
-        android:id="@+id/ageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/age_text"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/insertNameText" />
-
-    <EditText
-        android:id="@+id/insertAgeText"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ageView" />
+        app:layout_constraintTop_toBottomOf="@+id/deleteNameView" />
 
     <Button
-        android:id="@+id/saveButton"
+        android:id="@+id/deleteUserButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="123dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:onClick="buttonPressed"
-        android:text="@string/save_text"
-        app:layout_constraintBaseline_toBaselineOf="@+id/cancelButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cancelButton" />
+        android:text="@string/delete_button_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/cancelButton"
+        android:id="@+id/cancelDeleteProfileButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"

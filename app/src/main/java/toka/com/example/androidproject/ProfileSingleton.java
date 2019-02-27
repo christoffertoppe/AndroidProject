@@ -26,6 +26,16 @@ public class ProfileSingleton {
         profiles.add(new Profile(name, age));
     }
 
+    public boolean deleteProfile(String name) {
+        for (int i = 0; i < profiles.size(); i++) {
+            if(name.equals(getProfile(i).getName())) {
+                profiles.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<Profile> getProfiles() {
         return profiles;
     }

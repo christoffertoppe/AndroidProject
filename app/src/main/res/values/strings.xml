@@ -7,4 +7,7 @@
     <string name="cancel_text">Peruuta</string>
     <string name="save_text">Tallenna</string>
     <string name="snackbar_new_profile_created">Uusi käyttäjä luotu!</string>
+    <string name="delete_profile">Poista käyttäjä</string>
+    <string name="delete_profile_text">Kirjoita poistettavan käyttäjän nimi</string>
+    <string name="delete_button_text">Poista</string>
 </resources>

@@ -17,7 +17,6 @@ public class DummyActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         int i = b.getInt(EXTRA, 0);
-        Log.d("log", "" + i + "");
 
         TextView tv = findViewById(R.id.numberView);
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");

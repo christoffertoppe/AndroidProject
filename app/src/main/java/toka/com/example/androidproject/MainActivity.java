@@ -1,6 +1,5 @@
 package toka.com.example.androidproject;
 
-import android.app.Person;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -14,10 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -29,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        // Tallennettujen tietojen hakeminen käyttäen Gson-kirjastoa apuna
         SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
         Gson gson = new Gson();
         String json = mPrefs.getString("Profiles", "");
@@ -38,32 +37,22 @@ public class MainActivity extends AppCompatActivity {
         List <Profile> savedProfiles = new Gson().fromJson(json, type);
         profile.setProfiles(savedProfiles);
 
+        updateUI();
 
-
-        TextView tv = findViewById(R.id.profileView);
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
-        tv.setTypeface(typeface);
-
-        ListView lv = findViewById(R.id.profileListView);
-        lv.setAdapter(new ArrayAdapter<Profile>(this, R.layout.profile_layout, ProfileSingleton.getInstance().getProfiles()));
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d(TAG, "onItemClick(" + i + ")");
-                Intent nextActivity = new Intent(MainActivity.this, DummyActivity.class);
-                nextActivity.putExtra(EXTRA, i);
-                startActivity(nextActivity);
-            }
-        });
     }
 
     public void buttonPressed(View view) {
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
+
         if (view == findViewById(R.id.newProfileButton)) {
             setContentView(R.layout.create_profile_layout);
+
             TextView tv = findViewById(R.id.newProfileView);
-            Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
+            TextView nu = findViewById(R.id.newUserView);
+            TextView av = findViewById(R.id.ageView);
             tv.setTypeface(typeface);
+            nu.setTypeface(typeface);
+            av.setTypeface(typeface);
         } else if (view == findViewById(R.id.saveButton)) {
             EditText nameText = (EditText) findViewById(R.id.insertNameText);
             String name = nameText.getText().toString();
@@ -72,10 +61,28 @@ public class MainActivity extends AppCompatActivity {
             int ageToNumber = Integer.parseInt(age);
             profile.addProfile(name, ageToNumber);
             updateUI();
+            // Snackbar ilmoitus, joka ilmoittaa uuden käyttäjän luomisesta
             Snackbar mySnackbar = Snackbar.make(findViewById(R.id.snackBarLayout), R.string.snackbar_new_profile_created, Snackbar.LENGTH_LONG);
             mySnackbar.show();
-
-        } else if (view == findViewById(R.id.cancelButton)) {
+        } else if (view == findViewById(R.id.deleteProfileButton)) {
+            setContentView(R.layout.delete_profile_layout);
+            TextView tv = findViewById(R.id.deleteProfileView);
+            TextView dp = findViewById(R.id.deleteNameView);
+            tv.setTypeface(typeface);
+            dp.setTypeface(typeface);
+        }  else if (view == findViewById(R.id.deleteUserButton)) {
+            EditText nameText = (EditText) findViewById(R.id.insertDeleteName);
+            String name = nameText.getText().toString();
+            // Käyttäjälle annetaan ilmoitus onnistuiko profiilin poistaminen vai ei
+             if (profile.deleteProfile(name)) {
+                 Toast toast = Toast.makeText(getApplicationContext(), "Käyttäjä poistettu onnistuneesti!", Toast.LENGTH_LONG);
+                 updateUI();
+                 toast.show();
+             } else {
+                 Toast toast = Toast.makeText(getApplicationContext(), "Käyttäjää ei löytynyt!", Toast.LENGTH_LONG);
+                 toast.show();
+             }
+        }  else if ((view == findViewById(R.id.cancelButton)) ||(view == findViewById(R.id.cancelDeleteProfileButton))) {
             updateUI();
         }
     }
@@ -93,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d(TAG, "onItemClick(" + i + ")");
                 Intent nextActivity = new Intent(MainActivity.this, DummyActivity.class);
                 nextActivity.putExtra(EXTRA, i);
                 startActivity(nextActivity);
@@ -101,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Tietojen tallentaminen Gson-kirjastoa avuksi käyttäen
     @Override
     public void onPause() {
         super.onPause();
