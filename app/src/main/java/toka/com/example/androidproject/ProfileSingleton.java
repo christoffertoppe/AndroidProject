@@ -60,7 +60,7 @@ public class ProfileSingleton {
 
     public boolean deleteProfile(String name) {
         for (int i = 0; i < profiles.size(); i++) {
-            if (name.equals(getProfile(i).getName())) {
+            if (name.equalsIgnoreCase(getProfile(i).getName())) {
                 profiles.remove(i);
                 return true;
             }
