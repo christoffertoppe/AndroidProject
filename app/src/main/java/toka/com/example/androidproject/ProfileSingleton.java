@@ -5,22 +5,43 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Profile-luokasta määritelty Singleton-luokka, joka pitää sisällään
+ * käyttäjistä luodun listan
+ * ProfileSingleton-luokan avulla tiedot käyttäjistä pidetään yhdessä paikassa
+ *
+ * @author Samuli Salin
+ * @version 1.0
+ */
 public class ProfileSingleton {
     private List<Profile> profiles;
     private static final ProfileSingleton ourInstance = new ProfileSingleton();
+
+    /**
+     * Profile-luokkaan viitatessa käytettävä metodi
+     *
+     * @return ProfileSingleton Palauttaa uuden ProfileSingletonin
+     */
 
     public static ProfileSingleton getInstance() {
         return ourInstance;
     }
 
+    /**
+     * Luokan yksityinen konstruktori, joka luo uuden ArrayListin
+     */
+
     private ProfileSingleton() {
         profiles = new ArrayList<Profile>();
-        profiles.add(new Profile("Testikäyttäjä", 12));
-        /*profiles.add(new Profile("Juho", 6));
-        profiles.add(new Profile("Mira", 5));
-        profiles.add(new Profile("Tuukka", 8));
-        profiles.add(new Profile("Anna", 45));*/
     }
+
+    /**
+     * Luo uuden profiilin ja lisää sen olemassaolevalle listalle
+     *
+     * @param name String käyttäjän antama nimi
+     * @param age  int käyttäjän antama ikä
+     * @return boolean palauttaa True tai False arvon riippuen oliko profiilin luominen onnistunut
+     */
 
     public boolean addProfile(String name, int age) {
         if ((age > 0 && age < 100) && (name.length() > 0 && name.length() < 13)) {
@@ -30,9 +51,16 @@ public class ProfileSingleton {
         return false;
     }
 
+    /**
+     * Poistaa käyttäjäprofiilin listalta
+     *
+     * @param name String käyttäjän antama poistettavan profiilin nimi
+     * @return boolean palauttaa True tai False riippuen onnistuiko profiilin poisto
+     */
+
     public boolean deleteProfile(String name) {
         for (int i = 0; i < profiles.size(); i++) {
-            if(name.equals(getProfile(i).getName())) {
+            if (name.equals(getProfile(i).getName())) {
                 profiles.remove(i);
                 return true;
             }
@@ -40,13 +68,33 @@ public class ProfileSingleton {
         return false;
     }
 
+    /**
+     * Palauttaa käyttäjistä koostuvan listan
+     *
+     * @return List käyttäjälista
+     */
+
     public List<Profile> getProfiles() {
         return profiles;
     }
 
+    /**
+     * Asettaa listan arvot
+     * Käytetään profiilien hakemisessa tallennustilasta
+     *
+     * @param profiles List muistista haettu käyttäjälista
+     */
+
     public void setProfiles(List<Profile> profiles) {
         this.profiles = profiles;
     }
+
+    /**
+     * Hakee yksittäisen käyttäjän käyttäjälistalta
+     *
+     * @param i int käyttäjän indeksi
+     * @return Profile yksittäinen profiili
+     */
 
     public Profile getProfile(int i) {
         return profiles.get(i);
