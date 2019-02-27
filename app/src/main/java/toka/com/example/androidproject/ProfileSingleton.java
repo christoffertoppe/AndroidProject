@@ -22,8 +22,12 @@ public class ProfileSingleton {
         profiles.add(new Profile("Anna", 45));*/
     }
 
-    public void addProfile(String name, int age) {
-        profiles.add(new Profile(name, age));
+    public boolean addProfile(String name, int age) {
+        if (age > 0 && age < 100) {
+            profiles.add(new Profile(name, age));
+            return true;
+        }
+        return false;
     }
 
     public boolean deleteProfile(String name) {

@@ -59,11 +59,15 @@ public class MainActivity extends AppCompatActivity {
             EditText ageText = (EditText) findViewById(R.id.insertAgeText);
             String age = ageText.getText().toString();
             int ageToNumber = Integer.parseInt(age);
-            profile.addProfile(name, ageToNumber);
-            updateUI();
-            // Snackbar ilmoitus, joka ilmoittaa uuden käyttäjän luomisesta
-            Snackbar mySnackbar = Snackbar.make(findViewById(R.id.snackBarLayout), R.string.snackbar_new_profile_created, Snackbar.LENGTH_LONG);
-            mySnackbar.show();
+            if (!(profile.addProfile(name, ageToNumber))) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Iän täytyy olla väliltä 1-99!", Toast.LENGTH_LONG);
+                toast.show();
+            } else {
+                updateUI();
+                // Snackbar ilmoitus, joka ilmoittaa uuden käyttäjän luomisesta
+                Snackbar mySnackbar = Snackbar.make(findViewById(R.id.snackBarLayout), R.string.snackbar_new_profile_created, Snackbar.LENGTH_LONG);
+                mySnackbar.show();
+            }
         } else if (view == findViewById(R.id.deleteProfileButton)) {
             setContentView(R.layout.delete_profile_layout);
             TextView tv = findViewById(R.id.deleteProfileView);
