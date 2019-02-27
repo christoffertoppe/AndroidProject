@@ -1,38 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/snackBarLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBlueBackGround">
 
     <!-- Here are the existing layout elements, now wrapped in
          a CoordinatorLayout -->
 
     <Button
         android:id="@+id/newProfileButton"
-        android:layout_width="143dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_weight="1"
+        android:background="@drawable/rounded_button"
         android:onClick="buttonPressed"
         android:text="@string/new_profile"
-        app:layout_anchor="@+id/linearLayout2"
-        app:layout_anchorGravity="right|bottom" />
-
-    <Button
-        android:id="@+id/deleteProfileButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="1"
-        android:onClick="buttonPressed"
-        android:text="@string/delete_profile"
+        android:textSize="14sp"
         app:layout_anchor="@+id/linearLayout2"
         app:layout_anchorGravity="left|bottom" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <Button
+        android:id="@+id/deleteProfileButton"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/rounded_button"
+        android:onClick="buttonPressed"
+        android:text="@string/delete_profile"
+        android:textSize="14sp"
+        app:layout_anchor="@+id/linearLayout2"
+        app:layout_anchorGravity="right|bottom" />
+
+    <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -41,8 +49,8 @@
 
         <TextView
             android:id="@+id/profileView"
-            android:layout_width="428dp"
-            android:layout_height="177dp"
+            android:layout_width="match_parent"
+            android:layout_height="135dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
             android:gravity="center"
@@ -52,10 +60,11 @@
         <ListView
             android:id="@+id/profileListView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="5"
             android:divider="@color/colorTransparent"
             android:dividerHeight="50dp"
+            android:orientation="horizontal"
             android:paddingLeft="10dip"
             android:paddingTop="1dip"
             android:paddingRight="10dip"

@@ -2,6 +2,6 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fontFamily="@font/over_the_rainbow"
+    android:fontFamily="@font/amatic_sc"
     android:gravity="center_horizontal"
     android:textSize="60sp" />
