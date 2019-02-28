@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AndroidProject</string>
+    <string name="aloitapesu">aloita hampaiden pesu</string>
+    <string name="user">käyttäjä</string>
+    <string name="tipView">tip</string>
+    <string name="pesukerrat">Olet pessyt hampaita: 0 kertaa</string>
 </resources>
