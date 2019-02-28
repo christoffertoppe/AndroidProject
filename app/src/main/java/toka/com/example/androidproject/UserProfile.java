@@ -69,6 +69,10 @@ public class UserProfile extends AppCompatActivity {
         showTip();
         washCount++;
         washCounter();
+
+        Intent nextActivity = new Intent(UserProfile.this, BrushTimer.class);
+        nextActivity.putExtra(EXTRA, i);
+        startActivity(nextActivity);
     }
 
 }
