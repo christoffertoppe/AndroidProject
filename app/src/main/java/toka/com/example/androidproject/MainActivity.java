@@ -152,14 +152,14 @@ public class MainActivity extends AppCompatActivity {
         ListView lv = findViewById(R.id.profileListView);
         lv.setAdapter(new ArrayAdapter<Profile>(this, R.layout.profile_layout, ProfileSingleton.getInstance().getProfiles()));
 
-        /*lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent nextActivity = new Intent(MainActivity.this, DummyActivity.class);
+                Intent nextActivity = new Intent(MainActivity.this, UserProfile.class);
                 nextActivity.putExtra(EXTRA, i);
                 startActivity(nextActivity);
             }
-        });*/
+        });
     }
 
     /**

@@ -14,15 +14,19 @@ import toka.com.example.androidproject.R;
 
 public class UserProfile extends AppCompatActivity {
 
-
-
+    public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";
+    ProfileSingleton profile = ProfileSingleton.getInstance();
     private int washCount = 148;
     private String nimi = "Matti";
+    int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.userprofile_layout);
+
+        Bundle b = getIntent().getExtras();
+        i = b.getInt(EXTRA, 0);
 
         showTip();
         washCounter();
@@ -32,13 +36,14 @@ public class UserProfile extends AppCompatActivity {
 
     private void welcomeText() {
         TextView tvWelcome = findViewById(R.id.welcomeText);
-        tvWelcome.setText("Terve, " + nimi);
+        tvWelcome.setText("Terve, " + profile.getProfile(i).getName());
     }
 
 
 
     private void washCounter() {
         TextView tvWash = findViewById(R.id.washCount);
+        int washCount = profile.getProfile(i).getBrushingTotal();
         if(washCount == 0 || 1 < washCount && washCount < 150) {
             tvWash.setText("Olet harjannut hampaitasi: " + Integer.toString(washCount)+ " kertaa.");
         } else if (washCount >= 150) {
