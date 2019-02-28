@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Tallennettujen tietojen hakeminen käyttäen Gson-kirjastoa apuna
+
         SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
         String json = mPrefs.getString("Profiles", "");
         Type type = new TypeToken<List<Profile>>() {
