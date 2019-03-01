@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Tallennettujen tietojen hakeminen käyttäen Gson-kirjastoa apuna
-        SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences mPrefs = getSharedPreferences(EXTRA, MODE_PRIVATE); //////////////////////////////////////////////////////////////////////////////////////////////////////
         String json = mPrefs.getString("Profiles", "");
         Type type = new TypeToken<List<Profile>>() {
         }.getType();
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         } else if (view == findViewById(R.id.deleteUserButton)) {
             EditText nameText = (EditText) findViewById(R.id.insertDeleteName);
-            String name = nameText.getText().toString();
+            String name = nameText.getText().toString().trim();
             // Käyttäjälle annetaan ilmoitus onnistuiko profiilin poistaminen vai ei
             if (profile.deleteProfile(name)) {
                 Toast toast = Toast.makeText(getApplicationContext(), "Käyttäjä poistettu onnistuneesti!", Toast.LENGTH_LONG);
@@ -112,7 +112,12 @@ public class MainActivity extends AppCompatActivity {
             String name = nameText.getText().toString().trim();
 
             EditText ageText = (EditText) findViewById(R.id.insertAgeText);
-            String age = ageText.getText().toString().trim();
+            String age = ageText.getText().toString();
+
+            // Jos käyttäjä syöttää tyhjän kentän niin iälle annetaan automaattisesti arvo 0 (Arvo ei kelpaa profiilia luodessa)
+            if (age.equals("")) { //////////////////////////////////////////////////////////////////////////////////////////////////////
+                age = "0";        //////////////////////////////////////////////////////////////////////////////////////////////////////
+            }
             int ageToNumber = Integer.parseInt(age);
 
             if (!(profile.addProfile(name, ageToNumber))) {
@@ -173,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
 
         List<Profile> profileList = profile.getProfiles();
-        SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences mPrefs = getSharedPreferences(EXTRA, MODE_PRIVATE); //////////////////////////////////////////////////////////////////////////////////////////////////////
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         Gson gson = new Gson();
         String object = gson.toJson(profileList);

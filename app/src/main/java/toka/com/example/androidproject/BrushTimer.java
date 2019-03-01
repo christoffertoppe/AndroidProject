@@ -1,5 +1,6 @@
 package toka.com.example.androidproject;
 
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,16 +11,18 @@ import android.widget.TextView;
 import java.util.Locale;
 
 public class BrushTimer extends AppCompatActivity {
-    private static final long START_TIME_IN_MILLIS = 120000;
+    public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";
+    private int i = 0;  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    private static final long START_TIME_IN_MILLIS = 120000;
     private TextView mTextViewCountDown;
     private Button mButtonStartPause;
     private Button mButtonReset;
-
     private CountDownTimer mCountDownTimer;
-
     private boolean mTimerRunning;
 
+    MediaPlayer musicPlayer;    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    ProfileSingleton profile = ProfileSingleton.getInstance();  //////////////////////////////////////////////////////////////////////////////////////////////////////
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
 
     @Override
@@ -27,8 +30,19 @@ public class BrushTimer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brush_timer);
 
-        mTextViewCountDown = findViewById(R.id.text_view_countdown);
+        Bundle b = getIntent().getExtras(); //////////////////////////////////////////////////////////////////////////////////////////////////////
+        i = b.getInt(EXTRA, 0); //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        if(profile.getProfile(i).getSelectedSong() == 0) {  //////////////////////////////////////////////////////////////////////////////////////////////////////
+            musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.africa);
+        } else if( profile.getProfile(i).getSelectedSong() == 1) {
+            musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.babyshark);
+        } else if(profile.getProfile(i).getSelectedSong() == 2) {
+            musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.ripandtear);
+        }
+
+
+        mTextViewCountDown = findViewById(R.id.text_view_countdown);
         mButtonStartPause = findViewById(R.id.button_start_pause);
         mButtonReset = findViewById(R.id.button_reset);
 
@@ -67,12 +81,17 @@ public class BrushTimer extends AppCompatActivity {
                 mButtonStartPause.setText("Start");
                 mButtonStartPause.setVisibility(View.INVISIBLE);
                 mButtonReset.setVisibility(View.VISIBLE);
+
+                profile.getProfile(i).addBrushingTotal();   //////////////////////////////////////////////////////////////////////////////////////////////////////
+                musicPlayer.stop();     //////////////////////////////////////////////////////////////////////////////////////////////////////
             }
         }.start();
 
         mTimerRunning = true;
         mButtonStartPause.setText("pause");
         mButtonReset.setVisibility(View.INVISIBLE);
+
+        musicPlayer.start();    //////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
     private void pauseTimer() {
@@ -80,6 +99,8 @@ public class BrushTimer extends AppCompatActivity {
         mTimerRunning = false;
         mButtonStartPause.setText("Start");
         mButtonReset.setVisibility(View.VISIBLE);
+
+        musicPlayer.pause();    //////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
     private void resetTimer() {
@@ -87,6 +108,11 @@ public class BrushTimer extends AppCompatActivity {
         updateCountDownText();
         mButtonReset.setVisibility(View.INVISIBLE);
         mButtonStartPause.setVisibility(View.VISIBLE);
+
+        profile.getProfile(i).addBrushingTotal();   //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        musicPlayer.stop(); //////////////////////////////////////////////////////////////////////////////////////////////////////
+        musicPlayer.prepareAsync(); //////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
     private void updateCountDownText() {
