@@ -66,9 +66,12 @@ public class UserProfile extends AppCompatActivity {
             tvWash.setText("Olet harjannut hampaitasi: " + Integer.toString(washCount) + " kerran.");
         }
 
+        int minutes = (int) profile.getProfile(i).getBrushingSeconds() / 60;
+        int seconds = (int) profile.getProfile(i).getBrushingSeconds() % 60;
+
         TextView tvWashSeconds = findViewById(R.id.washCountSeconds);
         tvWashSeconds.setTypeface(typeface);
-        tvWashSeconds.setText("mikä tekee yhteeensä " + profile.getProfile(i).getBrushingSeconds() + " sekuntia!");
+        tvWashSeconds.setText("mikä tekee yhteeensä " + minutes + " minuuttia ja " + seconds + " sekuntia!");
 
     }
 
@@ -155,6 +158,7 @@ public class UserProfile extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+        showTip();
         washCounter();
         welcomeText();
     }

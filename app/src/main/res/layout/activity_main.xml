@@ -7,9 +7,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorBlueBackGround">
 
-    <!-- Here are the existing layout elements, now wrapped in
-         a CoordinatorLayout -->
-
     <Button
         android:id="@+id/newProfileButton"
         android:layout_width="150dp"
@@ -53,9 +50,11 @@
             android:layout_height="135dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
+            android:fontFamily="@font/amatic_sc"
             android:gravity="center"
             android:text="@string/choose_profile"
-            android:textSize="56sp" />
+            android:textSize="56sp"
+            android:textStyle="bold" />
 
         <ListView
             android:id="@+id/profileListView"

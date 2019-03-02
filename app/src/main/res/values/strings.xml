@@ -16,4 +16,5 @@
     <string name="pesukerrat">Olet pessyt hampaita: 0 kertaa</string>
     <string name="settings_text">Asetukset</string>
     <string name="song">Kappale</string>
+    <string name="pesukerrat_sekuneissa">Mikä tekee yhteensä 0 sekuntia!</string>
 </resources>
