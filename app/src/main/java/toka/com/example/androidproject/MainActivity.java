@@ -32,6 +32,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    private static final String PREF = "TestPref";
+    boolean has_the_app_been_run_before;
+
     private ProfileSingleton profile = ProfileSingleton.getInstance();
     private boolean secondViewActive = false;
 
@@ -60,13 +64,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Tallennettujen tietojen hakeminen käyttäen Gson-kirjastoa apuna
-        SharedPreferences mPrefs = getSharedPreferences(EXTRA, MODE_PRIVATE);
-        String json = mPrefs.getString("Profiles", "");
-        Type type = new TypeToken<List<Profile>>() {
-        }.getType();
-        List<Profile> savedProfiles = new Gson().fromJson(json, type);
-        profile.setProfiles(savedProfiles);
 
+        SharedPreferences prefGet = getSharedPreferences(PREF, MainActivity.MODE_PRIVATE);
+        has_the_app_been_run_before = prefGet.getBoolean("App", false);
+
+        if(has_the_app_been_run_before == true) {
+            SharedPreferences mPrefs = getSharedPreferences(EXTRA, MODE_PRIVATE);
+            String json = mPrefs.getString("Profiles", "");
+            Type type = new TypeToken<List<Profile>>() {
+            }.getType();
+            List<Profile> savedProfiles = new Gson().fromJson(json, type);
+            profile.setProfiles(savedProfiles);
+        }
         updateUI();
 
     }
@@ -176,6 +185,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
+
+        SharedPreferences prefPut = getSharedPreferences(PREF,MainActivity.MODE_PRIVATE);
+        SharedPreferences.Editor prefEditor = prefPut.edit();
+        prefEditor.putBoolean("App", true);
+        prefEditor.commit();
+
 
         List<Profile> profileList = profile.getProfiles();
         SharedPreferences mPrefs = getSharedPreferences(EXTRA, MODE_PRIVATE);
