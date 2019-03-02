@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBlueBackGround">
 
     <Button
+
         android:id="@+id/startButton"
         android:layout_width="200dp"
         android:layout_height="80dp"
+        android:background="@drawable/rounded_button"
         android:backgroundTint="@color/colorRed"
         android:onClick="buttonPressed"
         android:text="@string/aloitapesu"
@@ -21,20 +24,22 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintVertical_bias="0.68" />
 
     <TextView
         android:id="@+id/washCount"
         android:layout_width="395dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="32dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:maxLines="2"
         android:text="@string/pesukerrat"
+        android:textAlignment="center"
         android:textColor="@color/colorDarkBlue"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startButton" />
 
     <TextView
         android:id="@+id/welcomeText"
@@ -42,7 +47,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="32dp"
         android:text="@string/user"
-        android:textSize="24sp"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,14 +55,49 @@
 
     <TextView
         android:id="@+id/tipView"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/tipView"
-        android:textSize="18sp"
+        android:textAlignment="center"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.32999998" />
+
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/settingsbutton2"
+        android:onClick="buttonPressed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/leaderboardButton"
+        android:layout_width="48dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/podium"
+        android:onClick="buttonPressed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/washCountSeconds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/pesukerrat_sekuneissa"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/washCount" />
 </android.support.constraint.ConstraintLayout>

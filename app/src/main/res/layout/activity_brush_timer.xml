@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_view_countdown"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:text="start" />
 
     <Button
@@ -28,8 +29,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_view_countdown"
-        android:layout_marginStart="11dp"
+        android:layout_marginStart="-88dp"
+        android:layout_marginTop="81dp"
         android:layout_toEndOf="@+id/button_start_pause"
+        android:elevation="0dp"
         android:text="reset"
         android:visibility="invisible"
         tools:visibility="visible" />
