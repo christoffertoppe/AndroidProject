@@ -31,6 +31,7 @@ public class UsefulTips {
     public void addTip(String tip) {
         tips.add(tip);
     }
+
     public List<String> getTips() {
         return tips;
     }

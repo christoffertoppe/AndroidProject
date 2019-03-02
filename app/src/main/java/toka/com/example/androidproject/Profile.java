@@ -12,6 +12,7 @@ public class Profile {
     private int age;
     private int brushingSeconds;
     private int brushingTotal;
+    private int selectedSong;
 
     /**
      * Luodaan käyttäjäolio, jolle annetaan luonnin yhteydessä nimi ja ikä.
@@ -26,6 +27,7 @@ public class Profile {
         this.age = age;
         brushingSeconds = 0;
         brushingTotal = 0;
+        selectedSong = 0;
     }
 
     /**
@@ -33,14 +35,14 @@ public class Profile {
      *
      * @param time int yksittäisellä kerralla hampaiden pesemiseen käytetty aika sekunteina
      */
-    private void addBrushingSeconds(int time) {
+    public void addBrushingSeconds(int time) {
         this.brushingSeconds += time;
     }
 
     /**
      * Pitää yllä yksittäisiä hampaiden pesukertoja.
      */
-    private void addBrushingTotal() {
+    public void addBrushingTotal() {
         this.brushingTotal++;
     }
 
@@ -97,10 +99,10 @@ public class Profile {
     /**
      * Asettaa käyttäjän hampaiden pesemiseen kokonaisuudessaan käyttämän ajan.
      *
-     * @param brushingMinutes int hampaiden pesemiseen käytetty uusi aika sekunteina
+     * @param brushingSeconds int hampaiden pesemiseen käytetty uusi aika sekunteina
      */
 
-    public void setBrushingMinutes(int brushingMinutes) {
+    public void setBrushingSeconds(int brushingSeconds) {
         this.brushingSeconds = brushingSeconds;
     }
 
@@ -129,6 +131,14 @@ public class Profile {
      *
      * @return String käyttäjän nimi
      */
+
+    public int getSelectedSong() {
+        return selectedSong;
+    }
+
+    public void setSelectedSong(int selectedSong) {
+        this.selectedSong = selectedSong;
+    }
 
     public String toString() {
         return this.name;
