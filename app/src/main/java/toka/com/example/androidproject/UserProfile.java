@@ -27,8 +27,8 @@ public class UserProfile extends AppCompatActivity {
 
     int i = 0;
 
-    private boolean secondViewActive = false;   //////////////////////////////////////////////////////////////////////////////////////////////////////
-    String[] spinnerSongs = new String[]{"Toto - Africa", "Baby Shark", "Rip & Tear"};  //////////////////////////////////////////////////////////////////////////////////////////////////////
+    private boolean secondViewActive = false;
+    String[] spinnerSongs = new String[]{"Toto - Africa", "Baby Shark", "Rip & Tear"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +46,10 @@ public class UserProfile extends AppCompatActivity {
 
     private void welcomeText() {
         TextView tvWelcome = findViewById(R.id.welcomeText);
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf"); //
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
         tvWelcome.setTypeface(typeface);
         tvWelcome.setText("Terve, " + profile.getProfile(i).getName());
     }
-
 
 
     private void washCounter() {
@@ -59,14 +58,17 @@ public class UserProfile extends AppCompatActivity {
         tvWash.setTypeface(typeface);
 
         int washCount = profile.getProfile(i).getBrushingTotal();
-        if(washCount == 0 || 1 < washCount && washCount < 150) {
-            tvWash.setText("Olet harjannut hampaitasi: " + Integer.toString(washCount)+ " kertaa.");
+        if (washCount == 0 || 1 < washCount && washCount < 150) {
+            tvWash.setText("Olet harjannut hampaitasi: " + Integer.toString(washCount) + " kertaa.");
         } else if (washCount >= 150) {
-            tvWash.setText("Olet harjannut hampaitasi: "+ Integer.toString(washCount) + " kertaa." + "\nOlisi hyvä vaihtaa hammasharja uuteen.");
+            tvWash.setText("Olet harjannut hampaitasi: " + Integer.toString(washCount) + " kertaa." + "\nOlisi hyvä vaihtaa hammasharja uuteen.");
         } else {
-            tvWash.setText("Olet harjannut hampaitasi: " +  Integer.toString(washCount)+ " kerran.");
+            tvWash.setText("Olet harjannut hampaitasi: " + Integer.toString(washCount) + " kerran.");
         }
 
+        TextView tvWashSeconds = findViewById(R.id.washCountSeconds);
+        tvWashSeconds.setTypeface(typeface);
+        tvWashSeconds.setText("mikä tekee yhteeensä " + profile.getProfile(i).getBrushingSeconds() + " sekuntia!");
 
     }
 
@@ -83,7 +85,7 @@ public class UserProfile extends AppCompatActivity {
         tvTip.setText(tip);
     }
 
-    public void buttonPressed(View view) {  //////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void buttonPressed(View view) {
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
         if (view == findViewById(R.id.startButton)) {
 
@@ -117,7 +119,7 @@ public class UserProfile extends AppCompatActivity {
 
                 }
             });
-        } else if(view == findViewById(R.id.leaderboardButton)) {
+        } else if (view == findViewById(R.id.leaderboardButton)) {
             Intent nextActivity = new Intent(UserProfile.this, Leaderboard.class);
             nextActivity.putExtra(EXTRA, i);
             startActivity(nextActivity);
@@ -125,7 +127,7 @@ public class UserProfile extends AppCompatActivity {
     }
 
     @Override
-    public void onPause() { //////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void onPause() {
         super.onPause();
 
         List<Profile> profileList = profile.getProfiles();
@@ -138,7 +140,7 @@ public class UserProfile extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {   //////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void onBackPressed() {
         if (secondViewActive) {
             secondViewActive = false;
             setContentView(R.layout.userprofile_layout);
@@ -151,7 +153,7 @@ public class UserProfile extends AppCompatActivity {
     }
 
     @Override
-    public void onResume() {    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void onResume() {
         super.onResume();
         washCounter();
         welcomeText();

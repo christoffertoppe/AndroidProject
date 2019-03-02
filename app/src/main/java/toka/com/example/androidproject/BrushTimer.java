@@ -12,32 +12,31 @@ import java.util.Locale;
 
 public class BrushTimer extends AppCompatActivity {
     public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";
-    private int i = 0;  //////////////////////////////////////////////////////////////////////////////////////////////////////
+    private int i = 0;
 
     private static final long START_TIME_IN_MILLIS = 120000;
+    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     private TextView mTextViewCountDown;
     private Button mButtonStartPause;
     private Button mButtonReset;
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
 
-    MediaPlayer musicPlayer;    //////////////////////////////////////////////////////////////////////////////////////////////////////
-    ProfileSingleton profile = ProfileSingleton.getInstance();  //////////////////////////////////////////////////////////////////////////////////////////////////////
-    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+    MediaPlayer musicPlayer;ProfileSingleton profile = ProfileSingleton.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brush_timer);
 
-        Bundle b = getIntent().getExtras(); //////////////////////////////////////////////////////////////////////////////////////////////////////
-        i = b.getInt(EXTRA, 0); //////////////////////////////////////////////////////////////////////////////////////////////////////
+        Bundle b = getIntent().getExtras();
+        i = b.getInt(EXTRA, 0);
 
-        if(profile.getProfile(i).getSelectedSong() == 0) {  //////////////////////////////////////////////////////////////////////////////////////////////////////
+        if (profile.getProfile(i).getSelectedSong() == 0) {
             musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.africa);
-        } else if( profile.getProfile(i).getSelectedSong() == 1) {
+        } else if (profile.getProfile(i).getSelectedSong() == 1) {
             musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.babyshark);
-        } else if(profile.getProfile(i).getSelectedSong() == 2) {
+        } else if (profile.getProfile(i).getSelectedSong() == 2) {
             musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.ripandtear);
         }
 
@@ -82,8 +81,11 @@ public class BrushTimer extends AppCompatActivity {
                 mButtonStartPause.setVisibility(View.INVISIBLE);
                 mButtonReset.setVisibility(View.VISIBLE);
 
-                profile.getProfile(i).addBrushingTotal();   //////////////////////////////////////////////////////////////////////////////////////////////////////
-                musicPlayer.stop();     //////////////////////////////////////////////////////////////////////////////////////////////////////
+                profile.getProfile(i).addBrushingTotal();
+                int seconds = (int) (START_TIME_IN_MILLIS / 1000);
+                profile.getProfile(i).addBrushingSeconds((seconds));
+
+                musicPlayer.stop();
             }
         }.start();
 
@@ -91,7 +93,7 @@ public class BrushTimer extends AppCompatActivity {
         mButtonStartPause.setText("pause");
         mButtonReset.setVisibility(View.INVISIBLE);
 
-        musicPlayer.start();    //////////////////////////////////////////////////////////////////////////////////////////////////////
+        musicPlayer.start();
     }
 
     private void pauseTimer() {
@@ -100,19 +102,21 @@ public class BrushTimer extends AppCompatActivity {
         mButtonStartPause.setText("Start");
         mButtonReset.setVisibility(View.VISIBLE);
 
-        musicPlayer.pause();    //////////////////////////////////////////////////////////////////////////////////////////////////////
+        musicPlayer.pause();
     }
 
     private void resetTimer() {
+        int seconds = (int) ((START_TIME_IN_MILLIS - mTimeLeftInMillis) / 1000);
+        profile.getProfile(i).addBrushingSeconds((seconds));
+        profile.getProfile(i).addBrushingTotal();
+
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
         updateCountDownText();
         mButtonReset.setVisibility(View.INVISIBLE);
         mButtonStartPause.setVisibility(View.VISIBLE);
 
-        profile.getProfile(i).addBrushingTotal();   //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        musicPlayer.stop(); //////////////////////////////////////////////////////////////////////////////////////////////////////
-        musicPlayer.prepareAsync(); //////////////////////////////////////////////////////////////////////////////////////////////////////
+        musicPlayer.stop();
+        musicPlayer.prepareAsync();
     }
 
     private void updateCountDownText() {

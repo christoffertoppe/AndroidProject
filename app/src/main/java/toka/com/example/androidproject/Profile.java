@@ -134,11 +134,11 @@ public class Profile {
 
     public int getSelectedSong() {
         return selectedSong;
-    }   //////////////////////////////////////////////////////////////////////////////////////////////////////
+    }
 
     public void setSelectedSong(int selectedSong) {
         this.selectedSong = selectedSong;
-    }   //////////////////////////////////////////////////////////////////////////////////////////////////////
+    }
 
     public String toString() {
         return this.name;
