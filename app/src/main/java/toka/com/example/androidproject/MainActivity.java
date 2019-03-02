@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefGet = getSharedPreferences(PREF, MainActivity.MODE_PRIVATE);
         has_the_app_been_run_before = prefGet.getBoolean("App", false);
 
-        if(has_the_app_been_run_before == true) {
+        if (has_the_app_been_run_before == true) {
             SharedPreferences mPrefs = getSharedPreferences(EXTRA, MODE_PRIVATE);
             String json = mPrefs.getString("Profiles", "");
             Type type = new TypeToken<List<Profile>>() {
@@ -159,10 +159,6 @@ public class MainActivity extends AppCompatActivity {
         secondViewActive = false;
         setContentView(R.layout.activity_main);
 
-        TextView tv = findViewById(R.id.profileView);
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
-        tv.setTypeface(typeface);
-
         ListView lv = findViewById(R.id.profileListView);
         lv.setAdapter(new ArrayAdapter<Profile>(this, R.layout.profile_layout, ProfileSingleton.getInstance().getProfiles()));
 
@@ -179,6 +175,8 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Tallentaa käyttäjäprofiilit muistiin onPause -metodin yhteydessä.
      * Tallentamisessa käytetään hyödyksi Gson-kirjastoa.
+     * Käyttäjistä koostuva lista tallennetaan String-muotoon Gson-kirjaston avulla,
+     * joka haetaan sovelluksen käynnistämisen yhteydessä.
      */
 
     // Tietojen tallentaminen Gson-kirjastoa avuksi käyttäen
@@ -186,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
 
-        SharedPreferences prefPut = getSharedPreferences(PREF,MainActivity.MODE_PRIVATE);
+        SharedPreferences prefPut = getSharedPreferences(PREF, MainActivity.MODE_PRIVATE);
         SharedPreferences.Editor prefEditor = prefPut.edit();
         prefEditor.putBoolean("App", true);
         prefEditor.commit();

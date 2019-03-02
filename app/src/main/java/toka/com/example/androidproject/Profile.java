@@ -38,6 +38,7 @@ public class Profile {
      *
      * @param time int yksittäisellä kerralla hampaiden pesemiseen käytetty aika sekunteina
      */
+
     public void addBrushingSeconds(int time) {
         this.brushingSeconds += time;
     }
@@ -45,6 +46,7 @@ public class Profile {
     /**
      * Pitää yllä yksittäisiä hampaiden pesukertoja.
      */
+
     public void addBrushingTotal() {
         this.brushingTotal++;
     }
@@ -70,26 +72,6 @@ public class Profile {
     }
 
     /**
-     * Palauttaa käyttäjän iän.
-     *
-     * @return int käyttäjän ikä kokonaislukuna
-     */
-
-    public int getAge() {
-        return age;
-    }
-
-    /**
-     * Asettaa käyttäjälle uuden iän.
-     *
-     * @param age int käyttäjän uusi ikä
-     */
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    /**
      * Palauttaa käyttäjän hampaiden pesemiseen kokonaisuudessaan käyttämän ajan.
      *
      * @return int hampaiden pesemiseen käytetty aika sekunteina
@@ -97,16 +79,6 @@ public class Profile {
 
     public int getBrushingSeconds() {
         return brushingSeconds;
-    }
-
-    /**
-     * Asettaa käyttäjän hampaiden pesemiseen kokonaisuudessaan käyttämän ajan.
-     *
-     * @param brushingSeconds int hampaiden pesemiseen käytetty uusi aika sekunteina
-     */
-
-    public void setBrushingSeconds(int brushingSeconds) {
-        this.brushingSeconds = brushingSeconds;
     }
 
     /**
@@ -120,36 +92,45 @@ public class Profile {
     }
 
     /**
-     * Asettaa käyttäjän hampaiden pesukertojen määrän.
-     *
-     * @param brushingTotal int uusi pesukertojen määrä kokonaislukuna
-     */
-
-    public void setBrushingTotal(int brushingTotal) {
-        this.brushingTotal = brushingTotal;
-    }
-
-    /**
-     * Palauttaa käyttäjän nimen.
-     *
-     * @return String käyttäjän nimi
+     * Palauttaa käyttäjän valitseman kappaleen.
+     * @return int kappaleen numero
      */
 
     public int getSelectedSong() {
         return selectedSong;
     }
 
+    /**
+     * Muuttaa käyttäjän valitsemaa kappaletta.
+     * @param selectedSong int uusi kappale
+     */
+
     public void setSelectedSong(int selectedSong) {
         this.selectedSong = selectedSong;
     }
+
+    /**
+     * Palauttaa käyttäjän sijoituksen tulostaulukossa.
+     * @return int käyttäjän sijoitus
+     */
 
     public int getLeaderboardRanking() {
         return leaderboardRanking;
     }
 
+    /**
+     * Asettaa käyttäjälle uuden sijoituksen tulostaulukossa.
+     * @param leaderboardRanking int uusi sijoitus
+     */
+
     public void setLeaderboardRanking(int leaderboardRanking) {
         this.leaderboardRanking = leaderboardRanking;
     }
+
+    /**
+     * Luokan toString -metodi, joka palauttaa nimen.
+     * @return String käyttäjän nimi
+     */
 
     public String toString() {
         return this.name;

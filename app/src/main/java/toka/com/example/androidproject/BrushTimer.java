@@ -22,7 +22,8 @@ public class BrushTimer extends AppCompatActivity {
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
 
-    MediaPlayer musicPlayer;ProfileSingleton profile = ProfileSingleton.getInstance();
+    MediaPlayer musicPlayer;
+    ProfileSingleton profile = ProfileSingleton.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +95,7 @@ public class BrushTimer extends AppCompatActivity {
         mButtonReset.setVisibility(View.INVISIBLE);
 
         musicPlayer.start();
+        musicPlayer.isLooping();
     }
 
     private void pauseTimer() {

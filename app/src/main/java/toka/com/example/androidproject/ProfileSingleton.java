@@ -1,7 +1,6 @@
 package toka.com.example.androidproject;
 
 import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +12,7 @@ import java.util.List;
  * @author Samuli Salin
  * @version 1.0
  */
+
 public class ProfileSingleton {
     private List<Profile> profiles;
     private static final ProfileSingleton ourInstance = new ProfileSingleton();
@@ -74,9 +74,15 @@ public class ProfileSingleton {
         return false;
     }
 
-    // Päivitetään tulostaulukko näyttämään, kuka on pessyt hampaita eniten viikon aikana
+    /**
+     * Päivittää tulostaulukon näyttämään kuka on pessyt hampaita eniten.
+     * Käyttäjiä verrataan keskenään profiiliin tallennetun hamapiden pesuun käytetys sekuntimäärän kautta.
+     * Jos sekuntimäärä on käyttäjien kesken sama, sijoitetaan kyseiset käyttäjät aakkosjärjestyksen mukaan.
+     */
 
     public void updateLeaderboards() {
+        // Päivitetään tulostaulukko näyttämään, kuka on pessyt hampaita eniten viikon aikana
+
         for (int i = 0; i < profiles.size(); i++) {     // Verrataan yksittäistä käyttäjää listan kaikiin muihin käyttäjiin käyttämällä kahta for-silmukkaa
             getProfile(i).setLeaderboardRanking(1);     // Resetoidaan jokaisen käyttäjän aikaisempi sijoitus taulukossa antamalla jokaiselle arvo 1
 
@@ -113,9 +119,7 @@ public class ProfileSingleton {
                         break;
                     }
                 }
-
             }
-            Log.d("Troubleshoot", "Name: " + getProfile(i).getName() + " Rank: " + getProfile(i).getLeaderboardRanking());
         }
     }
 
@@ -149,5 +153,14 @@ public class ProfileSingleton {
 
     public Profile getProfile(int i) {
         return profiles.get(i);
+    }
+
+    /**
+     * Palauttaa profiililistan koon.
+     * @return int profiililistan koko
+     */
+
+    public int getProfilesSize() {
+        return profiles.size();
     }
 }
