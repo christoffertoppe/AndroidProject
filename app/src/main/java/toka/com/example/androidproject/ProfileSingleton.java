@@ -33,7 +33,6 @@ public class ProfileSingleton {
 
     private ProfileSingleton() {
         profiles = new ArrayList<Profile>();
-        profiles.add(new Profile("Testikäyttäjä", 13));
     }
 
     /**

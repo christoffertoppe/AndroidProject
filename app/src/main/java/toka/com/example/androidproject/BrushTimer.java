@@ -95,7 +95,7 @@ public class BrushTimer extends AppCompatActivity {
         mButtonReset.setVisibility(View.INVISIBLE);
 
         musicPlayer.start();
-        musicPlayer.isLooping();
+        musicPlayer.setLooping(true);
     }
 
     private void pauseTimer() {
