@@ -13,6 +13,8 @@ public class Profile {
     private int brushingSeconds;
     private int brushingTotal;
     private int selectedSong;
+    private int leaderboardRanking;
+
 
     /**
      * Luodaan käyttäjäolio, jolle annetaan luonnin yhteydessä nimi ja ikä.
@@ -28,6 +30,7 @@ public class Profile {
         brushingSeconds = 0;
         brushingTotal = 0;
         selectedSong = 0;
+        leaderboardRanking = 1;
     }
 
     /**
@@ -138,6 +141,14 @@ public class Profile {
 
     public void setSelectedSong(int selectedSong) {
         this.selectedSong = selectedSong;
+    }
+
+    public int getLeaderboardRanking() {
+        return leaderboardRanking;
+    }
+
+    public void setLeaderboardRanking(int leaderboardRanking) {
+        this.leaderboardRanking = leaderboardRanking;
     }
 
     public String toString() {

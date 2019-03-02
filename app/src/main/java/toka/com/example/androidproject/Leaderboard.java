@@ -26,6 +26,7 @@ public class Leaderboard extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         i = b.getInt(EXTRA, 0);
+        profile.updateLeaderboards();
 
         TextView tx = findViewById(R.id.firstPlaceText);
         TextView tv = findViewById(R.id.secondPlaceText);

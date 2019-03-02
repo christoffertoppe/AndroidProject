@@ -74,6 +74,51 @@ public class ProfileSingleton {
         return false;
     }
 
+    // Päivitetään tulostaulukko näyttämään, kuka on pessyt hampaita eniten viikon aikana
+
+    public void updateLeaderboards() {
+        for (int i = 0; i < profiles.size(); i++) {     // Verrataan yksittäistä käyttäjää listan kaikiin muihin käyttäjiin käyttämällä kahta for-silmukkaa
+            getProfile(i).setLeaderboardRanking(1);     // Resetoidaan jokaisen käyttäjän aikaisempi sijoitus taulukossa antamalla jokaiselle arvo 1
+
+            /*
+            Sisäkkäisen silmukan avulla yksittäistä käyttäjää (i) voidaan verrata muihin käyttäjiin (j)
+            Kun kaikki listan käyttäjät (j) on käyty läpi, siirrytään seuraavaan käyttäjään (i)
+             */
+
+            for (int j = 0; j < profiles.size(); j++) {
+
+                /* Jos verrattavan käyttäjän hampaiden pesuaika on lyhyempi kuin toisen käyttäjän,
+                lisätään hänen listasijoitukseensa +1
+                Käyttäjää ei voi myöskään verrata itseenä
+                 */
+                if ((getProfile(i).getBrushingSeconds() < getProfile(j).getBrushingSeconds()) && (i != j)) {
+                    getProfile(i).setLeaderboardRanking((getProfile(i).getLeaderboardRanking()) + 1);
+
+                    /*
+                    Jos sattuu niin, että kahden käyttäjän hampaiden pesuajat ovat identtiset,
+                    verrataan käyttäjiä aakkosten mukaan
+                     */
+                } else if (getProfile(i).getBrushingSeconds() == getProfile(j).getBrushingSeconds() && (i != j)) {
+
+                    String a = getProfile(i).getName();
+                    String b = getProfile(j).getName();
+
+                    int compareAlphabets = a.compareTo(b);
+
+                    if (compareAlphabets < 0) {
+                        break;
+                    } else if (compareAlphabets > 0) {
+                        getProfile(i).setLeaderboardRanking((getProfile(i).getLeaderboardRanking()) + 1);
+                    } else {
+                        break;
+                    }
+                }
+
+            }
+            Log.d("Troubleshoot", "Name: " + getProfile(i).getName() + " Rank: " + getProfile(i).getLeaderboardRanking());
+        }
+    }
+
     /**
      * Palauttaa käyttäjistä koostuvan listan.
      *
