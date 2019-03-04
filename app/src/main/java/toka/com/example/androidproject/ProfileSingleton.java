@@ -112,11 +112,11 @@ public class ProfileSingleton {
                     int compareAlphabets = a.compareTo(b);
 
                     if (compareAlphabets < 0) {
-                        break;
+                        continue;
                     } else if (compareAlphabets > 0) {
                         getProfile(i).setLeaderboardRanking((getProfile(i).getLeaderboardRanking()) + 1);
                     } else {
-                        break;
+                        continue;
                     }
                 }
             }

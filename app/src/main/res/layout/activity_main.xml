@@ -16,9 +16,11 @@
         android:layout_marginBottom="10dp"
         android:layout_weight="1"
         android:background="@drawable/rounded_button"
+        android:fontFamily="@font/amatic_sc"
         android:onClick="buttonPressed"
         android:text="@string/new_profile"
-        android:textSize="14sp"
+        android:textColor="@color/colorWhite"
+        android:textSize="30sp"
         app:layout_anchor="@+id/linearLayout2"
         app:layout_anchorGravity="left|bottom" />
 
@@ -31,9 +33,11 @@
         android:layout_marginBottom="10dp"
         android:layout_weight="1"
         android:background="@drawable/rounded_button"
+        android:fontFamily="@font/amatic_sc"
         android:onClick="buttonPressed"
         android:text="@string/delete_profile"
-        android:textSize="14sp"
+        android:textColor="@color/colorWhite"
+        android:textSize="30sp"
         app:layout_anchor="@+id/linearLayout2"
         app:layout_anchorGravity="right|bottom" />
 

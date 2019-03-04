@@ -1,5 +1,6 @@
 package toka.com.example.androidproject;
 
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
@@ -9,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
+import java.util.List;
 import java.util.Locale;
 
 public class BrushTimer extends AppCompatActivity {
@@ -146,7 +150,7 @@ public class BrushTimer extends AppCompatActivity {
         TextView tx = findViewById(R.id.teethBrushedTotalView);
 
         tv.setText("Hampaat pesty!");
-        tx.setText("Olet pessyt hampaita yhteensä " + minutes + " minuuttia ja " + seconds + " sekuntia");
+        tx.setText("Olet pessyt hampaitasi yhteensä " + minutes + " minuuttia ja " + seconds + " sekuntia");
 
         tv.setTypeface(typeface);
         tx.setTypeface(typeface);
@@ -155,4 +159,22 @@ public class BrushTimer extends AppCompatActivity {
     public void mainMenuButtonPressed(View view) {
         super.onBackPressed();
     }
+
+    /**
+     * onPause-käskyn yhteydessä käyttäjä-olio tallennetaan Gson-kirjaston avulla String-muotoon.
+     */
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        List<Profile> profileList = profile.getProfiles();
+        SharedPreferences mPrefs = getSharedPreferences(EXTRA, MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
+        String object = gson.toJson(profileList);
+        prefsEditor.putString("Profiles", object);
+        prefsEditor.commit();
+    }
 }
+

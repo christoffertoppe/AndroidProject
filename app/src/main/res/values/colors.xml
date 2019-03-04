@@ -10,8 +10,13 @@
     <color name="colorRed">	#f6b2b2</color>
     <color name="colorDarkBlue">#5b5efd</color>
     <color name="colorYellow">#e7df1b</color>
-    <color name="colorWhite">#ffe699</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorWhite2">#ffe699</color>
     <color name="colorGreen">#0f5e48</color>
+
+    <color name="colorGold">#FFD700</color>
+    <color name="colorSilver">#C0C0C0</color>
+    <color name="colorBronze">#CD7F32</color>
 
     // DEFAULT COLORS //
     <color name="colorPrimaryDark">#00574B</color>
