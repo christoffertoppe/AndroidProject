@@ -128,6 +128,24 @@ public class Profile {
     }
 
     /**
+     * Asettaa uuden arvon hampaiden hampaiden puhidstusta seuraavaan sekuntilaskuriin.
+     * @param brushingSeconds int uusi sekuntiarvo
+     */
+
+    public void setBrushingSeconds(int brushingSeconds) {
+        this.brushingSeconds = brushingSeconds;
+    }
+
+    /**
+     * Asettaa uuden yksittäisten hampaiden pesukertojen arvon.
+     * @param brushingTotal int uusi kokonaislukuarvo
+     */
+
+    public void setBrushingTotal(int brushingTotal) {
+        this.brushingTotal = brushingTotal;
+    }
+
+    /**
      * Luokan toString -metodi, joka palauttaa nimen.
      * @return String käyttäjän nimi
      */

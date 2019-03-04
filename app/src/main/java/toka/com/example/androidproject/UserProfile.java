@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -80,6 +81,44 @@ public class UserProfile extends AppCompatActivity {
         tvTip.setText(tip);
     }
 
+    public void resetButtonPressed(View view) {
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
+
+        TextView reset = findViewById(R.id.resetStatsTextView);
+        reset.setTypeface(typeface);
+
+        Button resetButton = findViewById(R.id.resetStatsButton);
+        Button yesButton = findViewById(R.id.yesButton);
+        Button noButton = findViewById(R.id.noButton);
+
+        if (view == findViewById(R.id.resetStatsButton)) {
+
+            reset.setVisibility(View.VISIBLE);
+            resetButton.setVisibility(View.INVISIBLE);
+            yesButton.setVisibility(View.VISIBLE);
+            noButton.setVisibility(View.VISIBLE);
+
+        } else if (view == findViewById(R.id.noButton)) {
+
+            resetButton.setVisibility(View.VISIBLE);
+            reset.setVisibility(View.INVISIBLE);
+            yesButton.setVisibility(View.INVISIBLE);
+            noButton.setVisibility(View.INVISIBLE);
+
+        } else if (view == findViewById(R.id.yesButton)) {
+            profile.getProfile(i).setBrushingTotal(0);
+            profile.getProfile(i).setBrushingSeconds(0);
+
+            resetButton.setVisibility(View.VISIBLE);
+            reset.setVisibility(View.INVISIBLE);
+            yesButton.setVisibility(View.INVISIBLE);
+            noButton.setVisibility(View.INVISIBLE);
+
+            Toast resetSuccessful = Toast.makeText(getApplicationContext(), "Tilastot nollattu!", Toast.LENGTH_LONG);
+            resetSuccessful.show();
+        }
+    }
+
     public void buttonPressed(View view) {
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
         if (view == findViewById(R.id.startButton)) {
@@ -91,6 +130,14 @@ public class UserProfile extends AppCompatActivity {
         } else if (view == findViewById(R.id.settingsButton)) {
             secondViewActive = true;
             setContentView(R.layout.settings_layout);
+
+            TextView reset = findViewById(R.id.resetStatsTextView);
+            Button yesButton = findViewById(R.id.yesButton);
+            Button noButton = findViewById(R.id.noButton);
+
+            reset.setVisibility(View.INVISIBLE);
+            yesButton.setVisibility(View.INVISIBLE);
+            noButton.setVisibility(View.INVISIBLE);
 
             TextView tv = findViewById(R.id.settingsView);
             tv.setTypeface(typeface);

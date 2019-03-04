@@ -75,8 +75,22 @@ public class MainActivity extends AppCompatActivity {
             }.getType();
             List<Profile> savedProfiles = new Gson().fromJson(json, type);
             profile.setProfiles(savedProfiles);
+
+            updateUI();
+        } else {
+            Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
+
+            secondViewActive = true;
+            setContentView(R.layout.create_profile_layout);
+
+            TextView tv = findViewById(R.id.newProfileView);
+            TextView nu = findViewById(R.id.newUserView);
+            TextView av = findViewById(R.id.ageView);
+
+            tv.setTypeface(typeface);
+            nu.setTypeface(typeface);
+            av.setTypeface(typeface);
         }
-        updateUI();
 
     }
 

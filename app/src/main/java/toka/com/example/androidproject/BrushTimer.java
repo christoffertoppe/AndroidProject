@@ -146,7 +146,7 @@ public class BrushTimer extends AppCompatActivity {
         TextView tv = findViewById(R.id.teethBrushedMessageView);
         TextView tx = findViewById(R.id.teethBrushedTotalView);
 
-        tv.setText("Hampaat pesty\nHyvää työtä!");
+        tv.setText("Hampaat pesty!");
         tx.setText("Olet pessyt hampaita yhteensä " + minutes + " minuuttia ja " + seconds + " sekuntia");
 
         tv.setTypeface(typeface);
