@@ -4,11 +4,14 @@
     <color name="colorPrimary">#008577</color>
 
     // ADDED COLORS FOR THE APPLICATION THEME //
-    <color name="colorBlueBackGround">#74aedb</color>
-    <color name="colorRed">#d76b73</color>
-    <color name="colorDarkBlue">#3d5a98</color>
-    <color name="colorYellow">#fdf895</color>
-    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlueBackGround">#c1ebff</color>
+    <color name="colorBlueBackGround2">#fef683</color>
+    <color name="colorBlueBackGround3">#37d0fd</color>
+    <color name="colorRed">	#f6b2b2</color>
+    <color name="colorDarkBlue">#5b5efd</color>
+    <color name="colorYellow">#e7df1b</color>
+    <color name="colorWhite">#ffe699</color>
+    <color name="colorGreen">#0f5e48</color>
 
     // DEFAULT COLORS //
     <color name="colorPrimaryDark">#00574B</color>
