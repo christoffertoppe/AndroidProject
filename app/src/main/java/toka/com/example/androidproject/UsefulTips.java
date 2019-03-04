@@ -15,7 +15,7 @@ public class UsefulTips {
 
     private UsefulTips() {
         tips = new ArrayList<>();
-        tips.add("Muista käyttää flourihammastahnaa.");
+        tips.add("Muista käyttää Flourihammastahnaa.");
         tips.add("Muista pestä takahampaat.");
         tips.add("Harjaa hellästi hampaitasi.");
     }

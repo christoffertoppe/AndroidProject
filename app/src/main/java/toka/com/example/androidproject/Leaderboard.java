@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -30,29 +32,52 @@ public class Leaderboard extends AppCompatActivity {
     }
 
     private void updatePodiumProfiles() {
+        ImageView firstPlaceTrophy = findViewById(R.id.firstPlaceView);
+        firstPlaceTrophy.setVisibility(View.INVISIBLE);
+
+        ImageView secondPlaceTrophy = findViewById(R.id.secondPlaceView);
+        secondPlaceTrophy.setVisibility(View.INVISIBLE);
+
+        ImageView thirdPlace = findViewById(R.id.thirdPlaceView);
+        thirdPlace.setVisibility(View.INVISIBLE);
+
+
         for (int i = 0; i < profile.getProfilesSize(); i++) {
+            int minutes = (int) profile.getProfile(i).getBrushingSeconds() / 60;
+            int seconds = (int) profile.getProfile(i).getBrushingSeconds() % 60;
+
             if (profile.getProfile(i).getLeaderboardRanking() == 1) {
                 TextView firstPlace = findViewById(R.id.firstPlaceText);
                 firstPlace.setText(profile.getProfile(i).getName());
 
+                firstPlaceTrophy = findViewById(R.id.firstPlaceView);
+                firstPlaceTrophy.setVisibility(View.VISIBLE);
+
+
                 TextView firstPlaceCongratulation = findViewById(R.id.firstPlaceCongratulation);
-                firstPlaceCongratulation.setText("Ahkerin harjaaja on:\n" + profile.getProfile(i).getName() + "!");
+                firstPlaceCongratulation.setText("Ahkerin harjaaja on: " + profile.getProfile(i).getName() + "!\n " + minutes + " min " + seconds + " sek - Pesukertoja: " + profile.getProfile(i).getBrushingTotal());
 
                 updateUI();
             } else if (profile.getProfile(i).getLeaderboardRanking() == 2) {
                 TextView secondPlace = findViewById(R.id.secondPlaceText);
                 secondPlace.setText(profile.getProfile(i).getName());
 
+                secondPlaceTrophy = findViewById(R.id.secondPlaceView);
+                secondPlaceTrophy.setVisibility(View.VISIBLE);
+
                 TextView secondPlaceCongratulation = findViewById(R.id.secondPlaceCongratulation);
-                secondPlaceCongratulation.setText("Hopeasijalla juhlii:\n" + profile.getProfile(i).getName() + "!");
+                secondPlaceCongratulation.setText("Hopeasijalla juhlii: " + profile.getProfile(i).getName() + "!\n " + minutes + " min " + seconds + " sek - Pesukertoja: " + profile.getProfile(i).getBrushingTotal());
 
                 updateUI();
             } else if (profile.getProfile(i).getLeaderboardRanking() == 3) {
-                TextView thirdPlace = findViewById(R.id.thirdPlaceText);
-                thirdPlace.setText(profile.getProfile(i).getName());
+                TextView thirdPlaceTrophy = findViewById(R.id.thirdPlaceText);
+                thirdPlaceTrophy.setText(profile.getProfile(i).getName());
+
+                thirdPlace = findViewById(R.id.thirdPlaceView);
+                thirdPlace.setVisibility(View.VISIBLE);
 
                 TextView thirdPlaceCongratulation = findViewById(R.id.thirdPlaceCongratulation);
-                thirdPlaceCongratulation.setText("Pronssisijan on saavuttanut:\n" + profile.getProfile(i).getName() + "!");
+                thirdPlaceCongratulation.setText("Pronssisijan on saavuttanut: " + profile.getProfile(i).getName() + "!\n " + minutes + " min " + seconds + " sek - Pesukertoja: " + profile.getProfile(i).getBrushingTotal());
 
                 updateUI();
             }
