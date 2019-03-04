@@ -1,5 +1,7 @@
 package toka.com.example.androidproject;
 
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -87,11 +89,13 @@ public class BrushTimer extends AppCompatActivity {
                 profile.getProfile(i).addBrushingSeconds((seconds));
 
                 musicPlayer.stop();
+
+                teethBrushed();
             }
         }.start();
 
         mTimerRunning = true;
-        mButtonStartPause.setText("pause");
+        mButtonStartPause.setText("Tauko");
         mButtonReset.setVisibility(View.INVISIBLE);
 
         musicPlayer.start();
@@ -101,7 +105,7 @@ public class BrushTimer extends AppCompatActivity {
     private void pauseTimer() {
         mCountDownTimer.cancel();
         mTimerRunning = false;
-        mButtonStartPause.setText("Start");
+        mButtonStartPause.setText("Jatka pesua");
         mButtonReset.setVisibility(View.VISIBLE);
 
         musicPlayer.pause();
@@ -119,6 +123,8 @@ public class BrushTimer extends AppCompatActivity {
 
         musicPlayer.stop();
         musicPlayer.prepareAsync();
+
+        teethBrushed();
     }
 
     private void updateCountDownText() {
@@ -128,5 +134,26 @@ public class BrushTimer extends AppCompatActivity {
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
 
         mTextViewCountDown.setText(timeLeftFormatted);
+    }
+
+    private void teethBrushed() {
+        int minutes = (int) profile.getProfile(i).getBrushingSeconds() / 60;
+        int seconds = (int) profile.getProfile(i).getBrushingSeconds() % 60;
+
+        setContentView(R.layout.teeth_brushed_layout);
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
+
+        TextView tv = findViewById(R.id.teethBrushedMessageView);
+        TextView tx = findViewById(R.id.teethBrushedTotalView);
+
+        tv.setText("Hampaat pesty\nHyvää työtä!");
+        tx.setText("Olet pessyt hampaita yhteensä " + minutes + " minuuttia ja " + seconds + " sekuntia");
+
+        tv.setTypeface(typeface);
+        tx.setTypeface(typeface);
+    }
+
+    public void mainMenuButtonPressed(View view) {
+        super.onBackPressed();
     }
 }

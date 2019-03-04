@@ -48,7 +48,7 @@ public class UserProfile extends AppCompatActivity {
         TextView tvWelcome = findViewById(R.id.welcomeText);
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
         tvWelcome.setTypeface(typeface);
-        tvWelcome.setText("Terve, " + profile.getProfile(i).getName());
+        tvWelcome.setText("Terve,\n" + profile.getProfile(i).getName());
     }
 
 
@@ -65,14 +65,6 @@ public class UserProfile extends AppCompatActivity {
         } else {
             tvWash.setText("Olet harjannut hampaitasi: " + Integer.toString(washCount) + " kerran.");
         }
-
-        int minutes = (int) profile.getProfile(i).getBrushingSeconds() / 60;
-        int seconds = (int) profile.getProfile(i).getBrushingSeconds() % 60;
-
-        TextView tvWashSeconds = findViewById(R.id.washCountSeconds);
-        tvWashSeconds.setTypeface(typeface);
-        tvWashSeconds.setText("mikä tekee yhteeensä " + minutes + " minuuttia ja " + seconds + " sekuntia!");
-
     }
 
 
