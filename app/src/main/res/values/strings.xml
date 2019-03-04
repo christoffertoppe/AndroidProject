@@ -10,7 +10,7 @@
     <string name="delete_profile">Poista käyttäjä</string>
     <string name="delete_profile_text">Kirjoita poistettavan käyttäjän nimi</string>
     <string name="delete_button_text">Poista</string>
-    <string name="aloitapesu">aloita hampaiden pesu</string>
+    <string name="aloitapesu">Pese hampaat</string>
     <string name="user">käyttäjä</string>
     <string name="tipView">tip</string>
     <string name="pesukerrat">Olet pessyt hampaita: 0 kertaa</string>
