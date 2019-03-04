@@ -19,17 +19,31 @@ import com.google.gson.Gson;
 import java.util.List;
 import java.util.Random;
 
-import toka.com.example.androidproject.R;
+/**
+ * UserProfile-luokka on sovelluksen "päävalikko". Aktiviteetin kautta käyttäjä voi aloitaa hampaiden pesun,
+ * siirtyä asetusvalikkoon tai tarkastella käyttäjien tilastoista koostuvaa tulostaulukkoa.
+ * Keskellä aktiviteettia näkyy satunnaisia hampaiden terveyttä edistäviä vinkkejä, jotka
+ * haetaan erillisestä listasta.
+ *
+ * @author
+ * @version 1.0
+ */
 
 public class UserProfile extends AppCompatActivity {
-
     public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";
     ProfileSingleton profile = ProfileSingleton.getInstance();
 
-    int i = 0;
+    int i;
 
     private boolean secondViewActive = false;
     String[] spinnerSongs = new String[]{"Toto - Africa", "Baby Shark", "Rip & Tear"};
+
+    /**
+     * Tallentaa edellisen aktiviteetin mukana saadun tiedon nykyisen käyttäjän indeksistä
+     * käyttäjä-olio listalla.
+     * Indeksin avulla sovellus muistaa, kuka käyttäjistä tällä hetkellä käyttää sovellusta.
+     * @param savedInstanceState Bundle pakettitiedosto
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +95,15 @@ public class UserProfile extends AppCompatActivity {
         tvTip.setText(tip);
     }
 
+    /**
+     * Reagoi käyttäjän napinpainalluksiin, kun käyttäjä haluaa nollata käyttäjäprofiilinsa tilastot asetusvalikossa.
+     * Poistamisen yhteydessä käyttäjältä pyydetään vahvistus, jotta vältyttäisiin vahinkoklikkauksilta.
+     * Nollauksen yhteydessä käyttäjän yksittäiset hampaiden pesukerrat ja niihin kuuluvat minuutit nollataan.
+     * Onnistuneesta nollauksesta Android lähettää Toast-tyyppisen ilmoituksen.
+     *
+     * @param view View aktiviteetin näkymä
+     */
+
     public void resetButtonPressed(View view) {
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
 
@@ -119,6 +142,16 @@ public class UserProfile extends AppCompatActivity {
         }
     }
 
+    /**
+     * Aktiviteetin näkymän eri nappeihin reagoiva metodi.
+     * buttonPressed -metodi reagoi aloitus-, asetus- ja tulostaulukko nappien painalluksiin.
+     * Aloitusnapin kautta käyttäjä siirtyy ajastinnäkymään, jossa hampaiden pesun voi aloittaa.
+     * Asetusvalikosta käyttäjä voi vaihtaa hampaiden pesun aikana soivaa musiikkia ja tulostaulukossa
+     * käyttäjä voi seurata edistymistään verrattuna muihin käyttäjiin.
+     *
+     * @param view tarvittava näkymä
+     */
+
     public void buttonPressed(View view) {
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
         if (view == findViewById(R.id.startButton)) {
@@ -151,6 +184,7 @@ public class UserProfile extends AppCompatActivity {
 
             songMenu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
+
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     int selectedSong = parent.getSelectedItemPosition();
                     profile.getProfile(i).setSelectedSong(selectedSong);
@@ -168,6 +202,10 @@ public class UserProfile extends AppCompatActivity {
         }
     }
 
+    /**
+     * onPause-käskyn yhteydessä käyttäjä-olio tallennetaan Gson-kirjaston avulla String-muotoon.
+     */
+
     @Override
     public void onPause() {
         super.onPause();
@@ -181,6 +219,16 @@ public class UserProfile extends AppCompatActivity {
         prefsEditor.commit();
     }
 
+    /**
+     * onBackPressed-metodin yhteydessä siirrytään edeltävään layouttiin, jos ruudulla on esillä jokin muu
+     * kuin päänäkymä, esimerkiksi asetus- tai tulostaulunäkymä.
+     * Koska UserProfile-aktiviteetti koostuu useista eri layout-näkymistä, mutta vain yhdestä aktiviteetista, aina ei ole
+     * toivottavaa, että back-nappi veisi käyttäjän aina edelliseen aktiviteettiin (tässä tapauksessa profiilin valitsemisnäkymään).
+     * Tämän takia onBackPressed -kutsun yhteydessä sovellus katsoo onko käyttäjä päävalikossa vai mahdollisesti jossain muussa layoutissa.
+     * Jos käyttäjä ei ole päävalikossa, vanhan aktiviteetin käynnistämisen sijaan, sovellus piirtää ruudulle päävalikon näkymän ikään kuin
+     * taaksepäin siirtymisen "simuloimiseksi".
+     */
+
     @Override
     public void onBackPressed() {
         if (secondViewActive) {
@@ -193,6 +241,10 @@ public class UserProfile extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
+    /**
+     * onResume-kutsun yhteydessä sovellus päivittää ruudulla näkyvät TextView-laatikot.
+     */
 
     @Override
     public void onResume() {

@@ -12,12 +12,29 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
+/**
+ * Tulostaulukko, jonka avulla käyttäjät voivat seurata kuka on pessyt hampaitaan säännöllisimmin.
+ * Käyttäjät asetetaan tulostaulukkoon sen mukaan kuka on käyttänyt eniten aikaa hampaiden pesemiseen.
+ * Tiedot haetaan käyttäjä-oliosta, joaka pitää yllä sekä käyttäjän yksittäisiä hampaiden pesukertoja että
+ * niihin käytettyä aikaa sekunteina.
+ * Aktiviteetin-käynnistämisen yhteydessä käyttäjien sijoitukset taulukossa päivitetään ja päivitetyt
+ * tulokset piirretään ruutuun.
+ */
+
 public class Leaderboard extends AppCompatActivity {
 
     public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";
     ProfileSingleton profile = ProfileSingleton.getInstance();
 
-    private int i = 0;
+    private int i;
+
+    /**
+     * Metodissa päivitetään tulostaulukko ja sen perusteella määritellään ruudulla näkyvät henkilöt
+     * ja heidän tietonsa. Edellisestä aktiviteetistä otetaan ylös tämänhetkisen käyttäjän indeksi käyttäjä-olio
+     * listalta.
+     *
+     * @param savedInstanceState Bundle pakettitiedosto
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +47,17 @@ public class Leaderboard extends AppCompatActivity {
         profile.updateLeaderboards();
         updatePodiumProfiles();
     }
+
+    /**
+     * Piirretään ruutuun parhaiten menestyneet henkilöt ja heidän tietonsa.
+     * Käyttäjien sijoitus tulostaulukossa etsitään käyttämällä hyväksi käyttäjien
+     * sijoitusta kuvaavaa muuttujaa, joka löytyy käyttäjän profiilista.
+     * Ruudulle piiretään kolme pokaalia, jonka alle kirjoitetaan ensimmäiseksi, toiseksi
+     * tai kolmanneksi sijoittuneen nimi sijoituksen mukaan. Jos käyttäjiä ei löydy tarpeeksi,
+     * ylimääräisiä pokaaleja ei piirretä.
+     * Kolmen parhaan käyttäjän tiedot näytetään pokaalien alla, jotta käyttäjät voivat
+     * seurata edistymistään verrattuna muihin.
+     */
 
     private void updatePodiumProfiles() {
         ImageView firstPlaceTrophy = findViewById(R.id.firstPlaceView);
@@ -84,6 +112,10 @@ public class Leaderboard extends AppCompatActivity {
         }
     }
 
+    /**
+     * Mukautetun fontin päivittäminen aktiviteetin tekstikenttiin.
+     */
+
     private void updateUI() {
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
 
@@ -104,6 +136,9 @@ public class Leaderboard extends AppCompatActivity {
         bronzeCongratulations.setTypeface(typeface);
     }
 
+    /**
+     * onPause-metodissa käyttäjän käyttäjä-olio tallennetaan käyttäen hyödyksi Gson-kirjastoa.
+     */
     @Override
     public void onPause() {
         super.onPause();

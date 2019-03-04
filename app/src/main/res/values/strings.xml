@@ -21,7 +21,7 @@
     <string name="tooth_brushing_done">Olen valmis!</string>
     <string name="return_to_main_menu">Palaa päävalikkoon</string>
     <string name="reset_stats_text">Nollaa harjaustilastot</string>
-    <string name="reset_stats_warning">Haluatko varmasti nollata käyttäjän harjaustilastot?</string>
+    <string name="reset_stats_warning">Haluatko varmasti nollata harjaustilastosi?</string>
     <string name="yes_text">Kyllä</string>
     <string name="no_button">Ei</string>
 </resources>

@@ -1,6 +1,5 @@
 package toka.com.example.androidproject;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
@@ -14,7 +13,7 @@ import java.util.Locale;
 
 public class BrushTimer extends AppCompatActivity {
     public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";
-    private int i = 0;
+    private int i;
 
     private static final long START_TIME_IN_MILLIS = 120000;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
