@@ -23,5 +23,5 @@
     <string name="reset_stats_text">Nollaa harjaustilastot</string>
     <string name="reset_stats_warning">Haluatko varmasti nollata harjaustilastosi?</string>
     <string name="yes_text">Kyllä</string>
-    <string name="no_button">Ei</string>
+    <string name="no_button">En</string>
 </resources>

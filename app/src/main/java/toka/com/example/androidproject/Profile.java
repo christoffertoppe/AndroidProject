@@ -1,7 +1,7 @@
 package toka.com.example.androidproject;
 
 /**
- * Profile-luokka määrittelee sovelluksen yksittäisen käyttäjän ominaisuudet
+ * Profile-luokka määrittelee sovelluksen yksittäisen käyttäjän ominaisuudet.
  * Tietoja voidaan hakea tai muokata tarpeen mukaan
  *
  * @author Samuli Salin
