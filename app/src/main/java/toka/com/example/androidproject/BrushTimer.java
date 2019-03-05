@@ -1,11 +1,13 @@
 package toka.com.example.androidproject;
 
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,6 +16,10 @@ import com.google.gson.Gson;
 
 import java.util.List;
 import java.util.Locale;
+
+import pl.droidsonroids.gif.GifAnimationMetaData;
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
 
 public class BrushTimer extends AppCompatActivity {
     public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";
@@ -37,6 +43,10 @@ public class BrushTimer extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         i = b.getInt(EXTRA, 0);
+        Log.d("Troubleshoot", "onCreate: Crash");
+
+        GifImageView majavaView = findViewById(R.id.majavaGifView);
+        majavaView.setVisibility(View.INVISIBLE);
 
         if (profile.getProfile(i).getSelectedSong() == 0) {
             musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.africa);
@@ -103,6 +113,9 @@ public class BrushTimer extends AppCompatActivity {
 
         musicPlayer.start();
         musicPlayer.setLooping(true);
+
+        GifImageView majavaView = findViewById(R.id.majavaGifView);
+        majavaView.setVisibility(View.VISIBLE);
     }
 
     private void pauseTimer() {

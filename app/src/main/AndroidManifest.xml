@@ -9,9 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Leaderboard"></activity>
-        <activity android:name=".BrushTimer" />
-        <activity android:name=".UserProfile" />
+        <activity android:name=".Leaderboard">
+            android:screenOrientation="portrait"
+        </activity>
+        <activity
+            android:name=".BrushTimer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UserProfile"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
