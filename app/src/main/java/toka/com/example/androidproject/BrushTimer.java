@@ -1,7 +1,6 @@
 package toka.com.example.androidproject;
 
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
@@ -17,8 +16,6 @@ import com.google.gson.Gson;
 import java.util.List;
 import java.util.Locale;
 
-import pl.droidsonroids.gif.GifAnimationMetaData;
-import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 
 public class BrushTimer extends AppCompatActivity {
@@ -49,9 +46,9 @@ public class BrushTimer extends AppCompatActivity {
         majavaView.setVisibility(View.INVISIBLE);
 
         if (profile.getProfile(i).getSelectedSong() == 0) {
-            musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.africa);
+            musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.artiss_happy);
         } else if (profile.getProfile(i).getSelectedSong() == 1) {
-            musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.babyshark);
+            musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.fmt_imagination_play);
         } else if (profile.getProfile(i).getSelectedSong() == 2) {
             musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.ripandtear);
         }

@@ -36,7 +36,7 @@ public class UserProfile extends AppCompatActivity {
     private int i;
 
     private boolean secondViewActive = false;
-    String[] spinnerSongs = new String[]{"Toto - Africa", "Baby Shark", "Rip & Tear"};
+    String[] spinnerSongs = new String[]{"ArtIss - Happy", "FMT - Imagination Play", "Rip & Tear"};
 
     /**
      * Tallentaa edellisen aktiviteetin mukana saadun tiedon nykyisen käyttäjän indeksistä
