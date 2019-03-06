@@ -1,20 +1,26 @@
 package toka.com.example.androidproject;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
+import java.util.List;
 import java.util.Locale;
+
+import pl.droidsonroids.gif.GifImageView;
 
 public class BrushTimer extends AppCompatActivity {
     public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";
-    private int i = 0;
+    private int i;
 
     private static final long START_TIME_IN_MILLIS = 120000;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
@@ -34,11 +40,15 @@ public class BrushTimer extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         i = b.getInt(EXTRA, 0);
+        Log.d("Troubleshoot", "onCreate: Crash");
+
+        GifImageView majavaView = findViewById(R.id.majavaGifView);
+        majavaView.setVisibility(View.INVISIBLE);
 
         if (profile.getProfile(i).getSelectedSong() == 0) {
-            musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.africa);
+            musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.artiss_happy);
         } else if (profile.getProfile(i).getSelectedSong() == 1) {
-            musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.babyshark);
+            musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.fmt_imagination_play);
         } else if (profile.getProfile(i).getSelectedSong() == 2) {
             musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.ripandtear);
         }
@@ -100,6 +110,9 @@ public class BrushTimer extends AppCompatActivity {
 
         musicPlayer.start();
         musicPlayer.setLooping(true);
+
+        GifImageView majavaView = findViewById(R.id.majavaGifView);
+        majavaView.setVisibility(View.VISIBLE);
     }
 
     private void pauseTimer() {
@@ -146,8 +159,8 @@ public class BrushTimer extends AppCompatActivity {
         TextView tv = findViewById(R.id.teethBrushedMessageView);
         TextView tx = findViewById(R.id.teethBrushedTotalView);
 
-        tv.setText("Hampaat pesty\nHyvää työtä!");
-        tx.setText("Olet pessyt hampaita yhteensä " + minutes + " minuuttia ja " + seconds + " sekuntia");
+        tv.setText("Hampaat pesty!");
+        tx.setText("Olet pessyt hampaitasi yhteensä " + minutes + " minuuttia ja " + seconds + " sekuntia");
 
         tv.setTypeface(typeface);
         tx.setTypeface(typeface);
@@ -156,4 +169,22 @@ public class BrushTimer extends AppCompatActivity {
     public void mainMenuButtonPressed(View view) {
         super.onBackPressed();
     }
+
+    /**
+     * onPause-käskyn yhteydessä käyttäjä-olio tallennetaan Gson-kirjaston avulla String-muotoon.
+     */
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        List<Profile> profileList = profile.getProfiles();
+        SharedPreferences mPrefs = getSharedPreferences(EXTRA, MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
+        String object = gson.toJson(profileList);
+        prefsEditor.putString("Profiles", object);
+        prefsEditor.commit();
+    }
 }
+

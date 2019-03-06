@@ -27,8 +27,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
         android:background="@drawable/rounded_button"
+        android:fontFamily="@font/amatic_sc"
         android:onClick="mainMenuButtonPressed"
         android:text="@string/return_to_main_menu"
+        android:textColor="@color/colorWhite"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -36,8 +39,10 @@
 
     <TextView
         android:id="@+id/teethBrushedTotalView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
         android:text="TextView"
         android:textAlignment="center"
@@ -46,4 +51,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/majavaView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/teethBrushedTotalView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/teethBrushedMessageView"
+        app:srcCompat="@drawable/majavaaprovecolor" />
+
 </android.support.constraint.ConstraintLayout>

@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private ProfileSingleton profile = ProfileSingleton.getInstance();
     private boolean secondViewActive = false;
 
-    private static String TAG = "Troubleshoot";
     public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";
 
     /**
@@ -55,8 +54,10 @@ public class MainActivity extends AppCompatActivity {
      * Esim. haetaan aiemmin muistiin tallennettu data käyttäen avuksi Gson -kirjastoa
      * ja päivitetään käyttöliittymä näyttämään ListView -näkymä
      * profiileista.
+     * Jos sovellusta ei ole käynnistetty aikaisemmin, tallennettua käyttäjälistaa ei haeta vaan sovellus
+     * siirtää käyttäjän suoraan profiilin luonti -laýouttiin.
      *
-     * @param savedInstanceState viittaus Bundle-objektiin, joka annetaan metodin paramterina
+     * @param savedInstanceState Bundle viittaus Bundle-objektiin
      */
 
     @Override
@@ -75,8 +76,22 @@ public class MainActivity extends AppCompatActivity {
             }.getType();
             List<Profile> savedProfiles = new Gson().fromJson(json, type);
             profile.setProfiles(savedProfiles);
+
+            updateUI();
+        } else {
+            Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
+
+            secondViewActive = true;
+            setContentView(R.layout.create_profile_layout);
+
+            TextView tv = findViewById(R.id.newProfileView);
+            TextView nu = findViewById(R.id.newUserView);
+            TextView av = findViewById(R.id.ageView);
+
+            tv.setTypeface(typeface);
+            nu.setTypeface(typeface);
+            av.setTypeface(typeface);
         }
-        updateUI();
 
     }
 
@@ -85,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
      * Nappeja on yhteensä neljä, joilla kaikilla on omat operaationsa, jotka on
      * määritelty erillisillä if-lauseilla.
      *
-     * @param view kertoo mikä näkymä(view) on käytössä
+     * @param view View kertoo mikä näkymä(view) on käytössä
      */
 
     // Luodaan nappien painamisesta tapahtuvat operaatiot

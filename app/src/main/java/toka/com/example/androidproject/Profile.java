@@ -1,13 +1,16 @@
 package toka.com.example.androidproject;
 
 /**
- * Profile-luokka määrittelee sovelluksen yksittäisen käyttäjän ominaisuudet
+ * Profile-luokka määrittelee sovelluksen yksittäisen käyttäjän ominaisuudet.
  * Tietoja voidaan hakea tai muokata tarpeen mukaan
  *
  * @author Samuli Salin
  * @version 1.0
  */
 public class Profile {
+    /**
+     * Profiilin nimi ja ikä.
+     */
     private String name;
     private int age;
     private int brushingSeconds;
@@ -19,9 +22,11 @@ public class Profile {
     /**
      * Luodaan käyttäjäolio, jolle annetaan luonnin yhteydessä nimi ja ikä.
      * Uutta käyttäjää luodessa hampaiden pesuaika ja pesukerrat ovat aina 0.
+     * Käyttäjän sijoitus tulostaulukossa on alkuun aina 1, kunnes tulostaulu päivitetään
+     * Learderboard-aktiviteettiin siirryttäessä.
      *
-     * @param name String käyttäjän nimi
-     * @param age  int käyttäjän ikä
+     * @param name String käyttäjän nimi, joka rajoitetaan enintään 12:sta merkkiin luonnin yhteydessä
+     * @param age  int käyttäjän ikä väliltä 1-99
      */
 
     public Profile(String name, int age) {
@@ -93,6 +98,7 @@ public class Profile {
 
     /**
      * Palauttaa käyttäjän valitseman kappaleen.
+     *
      * @return int kappaleen numero
      */
 
@@ -102,6 +108,7 @@ public class Profile {
 
     /**
      * Muuttaa käyttäjän valitsemaa kappaletta.
+     *
      * @param selectedSong int uusi kappale
      */
 
@@ -111,6 +118,7 @@ public class Profile {
 
     /**
      * Palauttaa käyttäjän sijoituksen tulostaulukossa.
+     *
      * @return int käyttäjän sijoitus
      */
 
@@ -120,6 +128,7 @@ public class Profile {
 
     /**
      * Asettaa käyttäjälle uuden sijoituksen tulostaulukossa.
+     *
      * @param leaderboardRanking int uusi sijoitus
      */
 
@@ -128,7 +137,28 @@ public class Profile {
     }
 
     /**
+     * Asettaa uuden arvon hampaiden hampaiden puhidstusta seuraavaan sekuntilaskuriin.
+     *
+     * @param brushingSeconds int uusi sekuntiarvo
+     */
+
+    public void setBrushingSeconds(int brushingSeconds) {
+        this.brushingSeconds = brushingSeconds;
+    }
+
+    /**
+     * Asettaa uuden yksittäisten hampaiden pesukertojen arvon.
+     *
+     * @param brushingTotal int uusi kokonaislukuarvo
+     */
+
+    public void setBrushingTotal(int brushingTotal) {
+        this.brushingTotal = brushingTotal;
+    }
+
+    /**
      * Luokan toString -metodi, joka palauttaa nimen.
+     *
      * @return String käyttäjän nimi
      */
 

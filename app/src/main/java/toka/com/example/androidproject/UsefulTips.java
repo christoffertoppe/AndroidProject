@@ -18,6 +18,15 @@ public class UsefulTips {
         tips.add("Muista käyttää Flourihammastahnaa.");
         tips.add("Muista pestä takahampaat.");
         tips.add("Harjaa hellästi hampaitasi.");
+        tips.add("Harjaa hampaat aamuin illoin.");
+        tips.add("Vaihda hammasharjasi muutaman kuukauden välein.");
+        tips.add("Ksylitolipurkka hellii hampaitasi.");
+        tips.add("Sokeri ei ole hyväksi hampaille.");
+        tips.add("Käy hammaslääkärissä säännöllisin väliajoin.");
+        tips.add("Matti Majava on hampaiden ystävä!.");
+        tips.add("Harjaa hellästi hampaitasi.");
+        tips.add("Harjaa ainakin kaksi minuuttia kerralla.");
+        tips.add("Harjaa hellästi hampaitasi.");
     }
 
     public String getTip(int i) {

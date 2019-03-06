@@ -13,7 +13,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/settings_text"
-        android:textSize="36sp"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,14 +22,15 @@
 
     <Spinner
         android:id="@+id/songSpinner"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="128dp"
-        android:layout_marginEnd="128dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="150dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settingsView" />
+        app:layout_constraintTop_toBottomOf="@+id/chooseSongView" />
 
     <TextView
         android:id="@+id/chooseSongView"
@@ -38,9 +39,72 @@
         android:layout_marginTop="77dp"
         android:layout_marginBottom="32dp"
         android:text="@string/song"
-        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/songSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settingsView" />
+
+    <Button
+        android:id="@+id/resetStatsButton"
+        android:layout_width="202dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/amatic_sc"
+        android:onClick="resetButtonPressed"
+        android:text="@string/reset_stats_text"
+        android:textColor="@color/colorWhite"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/songSpinner" />
+
+    <TextView
+        android:id="@+id/resetStatsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="@string/reset_stats_warning"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chooseSongView" />
+
+    <Button
+        android:id="@+id/yesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button_green"
+        android:fontFamily="@font/amatic_sc"
+        android:onClick="resetButtonPressed"
+        android:text="@string/yes_text"
+        android:textColor="@color/colorWhite"
+        android:textSize="30sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/noButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/noButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/amatic_sc"
+        android:onClick="resetButtonPressed"
+        android:text="@string/no_button"
+        android:textColor="@color/colorWhite"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resetStatsTextView"
+        app:layout_constraintVertical_bias="0.2" />
+
 </android.support.constraint.ConstraintLayout>
