@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static final String PREF = "TestPref";  //Tallennuksessa käytetty avain
-    public boolean has_the_app_been_run_before; // Boolean, joka määrittelee käynnistetäänkö sovellus ensimmäistä kertaa
+    private boolean has_the_app_been_run_before; // Boolean, joka määrittelee käynnistetäänkö sovellus ensimmäistä kertaa
 
     private ProfileSingleton profile = ProfileSingleton.getInstance();
     private boolean secondViewActive = false;   // Boolean, joka määrittelee onko näytöllä "Valitse profiili"-layout vai "Uusi profiili"/"Poista profiili" -layout
