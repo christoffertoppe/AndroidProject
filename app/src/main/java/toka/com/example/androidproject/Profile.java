@@ -11,12 +11,12 @@ public class Profile {
     /**
      * Profiilin nimi ja ikä.
      */
-    private String name;
-    private int age;
-    private int brushingSeconds;
-    private int brushingTotal;
-    private int selectedSong;
-    private int leaderboardRanking;
+    private String name;    // Käyttäjän nimi
+    private int age;        // Käyttäjän ikä
+    private int brushingSeconds;    // Käyttäjän hampaiden pesemiseen käytetty aika sekunteina
+    private int brushingTotal;      // Käyttäjän hampaiden pesemisen yksittäiset kerrat
+    private int selectedSong;       // Käyttäjän valitsema kappale
+    private int leaderboardRanking; // Käyttäjän sijoitus tulostaulukossa
 
 
     /**
@@ -29,6 +29,7 @@ public class Profile {
      * @param age  int käyttäjän ikä väliltä 1-99
      */
 
+    //Luodaan käyttäjäolio, joka saa parametreinä nimen ja iän. Muut arvot saavat alkuun perusarvot
     public Profile(String name, int age) {
         this.name = name;
         this.age = age;
@@ -44,6 +45,7 @@ public class Profile {
      * @param time int yksittäisellä kerralla hampaiden pesemiseen käytetty aika sekunteina
      */
 
+    // Lisää käyttäjän hampaiden pesuun käytettyyn aikaan viimesimmän pesuajan
     public void addBrushingSeconds(int time) {
         this.brushingSeconds += time;
     }
@@ -52,6 +54,7 @@ public class Profile {
      * Pitää yllä yksittäisiä hampaiden pesukertoja.
      */
 
+    // Lisää käyttäjän pesukertoihin + 1
     public void addBrushingTotal() {
         this.brushingTotal++;
     }

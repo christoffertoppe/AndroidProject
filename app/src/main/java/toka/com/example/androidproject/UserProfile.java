@@ -206,6 +206,8 @@ public class UserProfile extends AppCompatActivity {
      * onPause-käskyn yhteydessä käyttäjä-olio tallennetaan Gson-kirjaston avulla String-muotoon.
      */
 
+    // onPause-käskyn yhteydessä käyttäjä-olio tallennetaan Gson-kirjaston avulla String-muotoon.
+
     @Override
     public void onPause() {
         super.onPause();
@@ -228,6 +230,8 @@ public class UserProfile extends AppCompatActivity {
      * Jos käyttäjä ei ole päävalikossa, vanhan aktiviteetin käynnistämisen sijaan, sovellus piirtää ruudulle päävalikon näkymän ikään kuin
      * taaksepäin siirtymisen "simuloimiseksi".
      */
+
+    // Ohjelmoidaan Androidin sisäinen "Back"-nappi vaihtamaan näkymää, koska Päänäkymä on tehty vain yhden Activityn sisälle
 
     @Override
     public void onBackPressed() {
