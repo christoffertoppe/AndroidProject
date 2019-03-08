@@ -158,7 +158,7 @@ public class Leaderboard extends AppCompatActivity {
      * onPause-metodissa käyttäjän käyttäjä-olio tallennetaan käyttäen hyödyksi Gson-kirjastoa.
      */
 
-    // onPause()-metodia kutsuttaessa tallennetaan käyttäjän tiedot muistiin
+    // onPause()-metodia kutsuttaessa tallennetaan käyttäjän tiedot muistiin Gson-kirjaston avulla
     @Override
     public void onPause() {
         super.onPause();
