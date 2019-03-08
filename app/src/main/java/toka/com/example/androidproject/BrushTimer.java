@@ -31,7 +31,7 @@ public class BrushTimer extends AppCompatActivity {
     private boolean mTimerRunning;
 
     MediaPlayer musicPlayer;
-    ProfileSingleton profile = ProfileSingleton.getInstance();
+    private ProfileSingleton profile = ProfileSingleton.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

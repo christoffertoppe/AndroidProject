@@ -31,7 +31,7 @@ import java.util.Random;
 
 public class UserProfile extends AppCompatActivity {
     public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";
-    ProfileSingleton profile = ProfileSingleton.getInstance();
+    private ProfileSingleton profile = ProfileSingleton.getInstance();
 
     private int i;
 
