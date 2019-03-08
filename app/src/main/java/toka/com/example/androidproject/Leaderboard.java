@@ -23,10 +23,10 @@ import java.util.List;
 
 public class Leaderboard extends AppCompatActivity {
 
-    public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";
+    public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";   // Tallentamisessa ja lataamisessa käytettävä osoite
     private ProfileSingleton profile = ProfileSingleton.getInstance();
 
-    private int i;
+    private int i;  // Muuttuja, joka säilyttää tämänhetkisen profiilin indeksin Profile-olio -listalta
 
     /**
      * Metodissa päivitetään tulostaulukko ja sen perusteella määritellään ruudulla näkyvät henkilöt
@@ -41,8 +41,13 @@ public class Leaderboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
 
+        // Ottaa ylös edellisen aktiviteetin mukana tulleen Profile-olion indeksin
+
         Bundle b = getIntent().getExtras();
         i = b.getInt(EXTRA, 0);
+
+        //Päivittää profiilien sisäisen tulostaulukon ja käyttöliittymän uusimpien tietojen mukaan
+
 
         profile.updateLeaderboards();
         updatePodiumProfiles();
@@ -60,6 +65,9 @@ public class Leaderboard extends AppCompatActivity {
      */
 
     private void updatePodiumProfiles() {
+
+        // Asettaa kuvat pokaaleista näkymättömiksi
+
         ImageView firstPlaceTrophy = findViewById(R.id.firstPlaceView);
         firstPlaceTrophy.setVisibility(View.INVISIBLE);
 
@@ -68,6 +76,12 @@ public class Leaderboard extends AppCompatActivity {
 
         ImageView thirdPlace = findViewById(R.id.thirdPlaceView);
         thirdPlace.setVisibility(View.INVISIBLE);
+
+        /* Etsii listalta henkilöt, joiden sijoitus tulostaulukossa on 1, 2 tai 3 ja asettaa heidät
+        oikealle paikalle layoutissa
+        Jos käyttäjiä ei ole tarpeeksi (kenelläkään ei ole tulostaulukossa sijoitus 2 tai 3),
+        ylimääräisiä pokaaleja ja tekstikenttiä ei piirretä
+         */
 
 
         for (int i = 0; i < profile.getProfilesSize(); i++) {
@@ -107,6 +121,8 @@ public class Leaderboard extends AppCompatActivity {
                 TextView thirdPlaceCongratulation = findViewById(R.id.thirdPlaceCongratulation);
                 thirdPlaceCongratulation.setText("Pronssisijan on saavuttanut: " + profile.getProfile(i).getName() + "!\n " + minutes + " min " + seconds + " sek - Pesukertoja: " + profile.getProfile(i).getBrushingTotal());
 
+                // Päivittää käyttöliitymän muutoksineen
+
                 updateUI();
             }
         }
@@ -117,6 +133,8 @@ public class Leaderboard extends AppCompatActivity {
      */
 
     private void updateUI() {
+        // Asetetaan layoutin elementeille mukautetut fontit
+
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
 
         TextView gold = findViewById(R.id.firstPlaceText);
@@ -139,6 +157,8 @@ public class Leaderboard extends AppCompatActivity {
     /**
      * onPause-metodissa käyttäjän käyttäjä-olio tallennetaan käyttäen hyödyksi Gson-kirjastoa.
      */
+
+    // onPause()-metodia kutsuttaessa tallennetaan käyttäjän tiedot muistiin
     @Override
     public void onPause() {
         super.onPause();
