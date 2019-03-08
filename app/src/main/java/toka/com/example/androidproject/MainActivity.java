@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static final String PREF = "TestPref";
-    boolean has_the_app_been_run_before;
+    public boolean has_the_app_been_run_before;
 
     private ProfileSingleton profile = ProfileSingleton.getInstance();
     private boolean secondViewActive = false;
