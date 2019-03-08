@@ -33,13 +33,13 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
 
-    private static final String PREF = "TestPref";
-    public boolean has_the_app_been_run_before;
+    private static final String PREF = "TestPref";  //Tallennuksessa käytetty avain
+    public boolean has_the_app_been_run_before; // Boolean, joka määrittelee käynnistetäänkö sovellus ensimmäistä kertaa
 
     private ProfileSingleton profile = ProfileSingleton.getInstance();
-    private boolean secondViewActive = false;
+    private boolean secondViewActive = false;   // Boolean, joka määrittelee onko näytöllä "Valitse profiili"-layout vai "Uusi profiili"/"Poista profiili" -layout
 
-    public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";
+    public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";   // Tallentamisessa ja lataamisessa käytettävä sijainti
 
     /**
      * Luo tyhjän MainActivityn.
@@ -64,10 +64,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Tallennettujen tietojen hakeminen käyttäen Gson-kirjastoa apuna
+        /* Tallennettujen tietojen hakeminen käyttäen Gson-kirjastoa apuna
+        samalla katsotaan käynnistetäänkö sovellus ensimmäistä kertaa.
+        Jos sovellus käynnistetään ensimmäistä kertaa, viedään käyttäjä automaattisesti
+        "Uusi profiili" -näkymään.
+         */
 
         SharedPreferences prefGet = getSharedPreferences(PREF, MainActivity.MODE_PRIVATE);
         has_the_app_been_run_before = prefGet.getBoolean("App", false);
+
+        // Jos sovellusta ei käynnistetä ensimmäistä kertaa, haetaan tallennetut profiilit
 
         if (has_the_app_been_run_before == true) {
             SharedPreferences mPrefs = getSharedPreferences(EXTRA, MODE_PRIVATE);
@@ -77,7 +83,11 @@ public class MainActivity extends AppCompatActivity {
             List<Profile> savedProfiles = new Gson().fromJson(json, type);
             profile.setProfiles(savedProfiles);
 
+            // Päivitetään käyttöliittymä näyttämään ListView ja muut Viewit
+
             updateUI();
+
+            // Jos sovellus käynnistetään ensimmäistä kertaa
         } else {
             Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
 
@@ -108,8 +118,12 @@ public class MainActivity extends AppCompatActivity {
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
 
         if (view == findViewById(R.id.newProfileButton)) {
+            // Piirretään näytölle "Luo profiili"-layout
+
             secondViewActive = true;
             setContentView(R.layout.create_profile_layout);
+
+            //Asetetaan teksteille mukautettu fontti
 
             TextView tv = findViewById(R.id.newProfileView);
             TextView nu = findViewById(R.id.newUserView);
@@ -120,8 +134,11 @@ public class MainActivity extends AppCompatActivity {
             av.setTypeface(typeface);
 
         } else if (view == findViewById(R.id.deleteUserButton)) {
+            //Kun "Poista"-nappia painetaan
+
             EditText nameText = (EditText) findViewById(R.id.insertDeleteName);
             String name = nameText.getText().toString().trim();
+
             // Käyttäjälle annetaan ilmoitus onnistuiko profiilin poistaminen vai ei
             if (profile.deleteProfile(name)) {
                 Toast toast = Toast.makeText(getApplicationContext(), "Käyttäjä poistettu onnistuneesti!", Toast.LENGTH_LONG);
@@ -132,8 +149,11 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
             }
         } else if (view == findViewById(R.id.saveButton)) {
+            // Kun käyttäjä painaa "Tallenna"-nappia "Luo profiili"-näkymässä
             EditText nameText = (EditText) findViewById(R.id.insertNameText);
             String name = nameText.getText().toString().trim();
+
+            // Asetetaan annetut arvot muuttujiin
 
             EditText ageText = (EditText) findViewById(R.id.insertAgeText);
             String age = ageText.getText().toString();
@@ -143,6 +163,12 @@ public class MainActivity extends AppCompatActivity {
                 age = "0";
             }
             int ageToNumber = Integer.parseInt(age);
+
+            /* Annetaan annetut arvot parametrina addProfile()-metodille
+            Jos profiilin luonti onnistuu, palautetaan käyttäjä "Valitse profiili"näkymään
+            Muuten käyttäjää ei siirretä vaan annetaan virheilmoitus
+             */
+
 
             if (!(profile.addProfile(name, ageToNumber))) {
                 Toast toast = Toast.makeText(getApplicationContext(), "Tarkista tietojen ehdot tai nimi on jo olemassa!", Toast.LENGTH_LONG);
@@ -155,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
                 mySnackbar.show();
             }
         } else if (view == findViewById(R.id.deleteProfileButton)) {
+            // Kun "Poista"-nappulaa painetaan "Poista profiili"-layoutissa, piirretään näytön elementit
             secondViewActive = true;
             setContentView(R.layout.delete_profile_layout);
 
@@ -170,6 +197,8 @@ public class MainActivity extends AppCompatActivity {
      * Päivittää käyttöliittymän päänäkymään, josta käyttäjä voi valita profiilin.
      * Tekstikentille haetaan mukautettu fontti.
      */
+
+    //Aina "Valitse profiili"-layouttiin palatessa päivitetään näkymän elementit ruutuun ja ListView alkaa odottamaan klikkausta
     private void updateUI() {
         secondViewActive = false;
         setContentView(R.layout.activity_main);
@@ -195,6 +224,8 @@ public class MainActivity extends AppCompatActivity {
      */
 
     // Tietojen tallentaminen Gson-kirjastoa avuksi käyttäen
+
+    // OnPause()-metodia kutsuttaessa tallennetaan profiilin tiedot käyttäen Gson-kirjastoa
     @Override
     public void onPause() {
         super.onPause();

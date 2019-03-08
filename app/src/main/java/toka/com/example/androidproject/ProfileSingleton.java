@@ -32,6 +32,7 @@ public class ProfileSingleton {
      * Luokan yksityinen konstruktori, joka luo uuden ArrayListin.
      */
 
+    // Luo kutsuttaessa uuden Profile-olioista koostuvan listan
     private ProfileSingleton() {
         profiles = new ArrayList<Profile>();
     }
@@ -44,8 +45,13 @@ public class ProfileSingleton {
      * @return boolean palauttaa True tai False arvon riippuen oliko profiilin luominen onnistunut
      */
 
+    // Lisää profiilin listalle ja tarkistaa täyttääkö annetut parametrit ehdot
     public boolean addProfile(String name, int age) {
+
+        //Katsoo onko ikä 1-99 välillä ja onko nimi alle 12 merkkiä
         if ((age > 0 && age < 100) && (name.length() > 0 && name.length() < 13)) {
+
+            //Tarkistaa onko nimi jo olemassa
             for (int i = 0; i < profiles.size(); i++) {
                 if (name.equalsIgnoreCase(getProfile(i).getName())) {
                     return false;
@@ -64,7 +70,13 @@ public class ProfileSingleton {
      * @return boolean palauttaa True tai False riippuen onnistuiko profiilin poisto
      */
 
+    // Poistaa profiilin listalta
     public boolean deleteProfile(String name) {
+
+        /*  Käy läpi olemassa olevat profiilit
+        Jos parametrina annettu merkkijono täsmää olemassa olevaan profiiliin,
+        poistetaan kyseinen käyttäjä
+         */
         for (int i = 0; i < profiles.size(); i++) {
             if (name.equalsIgnoreCase(getProfile(i).getName())) {
                 profiles.remove(i);
@@ -161,6 +173,7 @@ public class ProfileSingleton {
      * @return int profiililistan koko
      */
 
+    // Palauttaa profiililistan koon
     public int getProfilesSize() {
         return profiles.size();
     }
