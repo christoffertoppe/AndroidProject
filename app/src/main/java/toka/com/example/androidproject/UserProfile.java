@@ -42,6 +42,7 @@ public class UserProfile extends AppCompatActivity {
      * Tallentaa edellisen aktiviteetin mukana saadun tiedon nykyisen käyttäjän indeksistä
      * käyttäjä-olio listalla.
      * Indeksin avulla sovellus muistaa, kuka käyttäjistä tällä hetkellä käyttää sovellusta.
+     *
      * @param savedInstanceState Bundle pakettitiedosto
      */
 
@@ -207,7 +208,6 @@ public class UserProfile extends AppCompatActivity {
      */
 
     // onPause-käskyn yhteydessä käyttäjä-olio tallennetaan Gson-kirjaston avulla String-muotoon.
-
     @Override
     public void onPause() {
         super.onPause();
@@ -232,7 +232,6 @@ public class UserProfile extends AppCompatActivity {
      */
 
     // Ohjelmoidaan Androidin sisäinen "Back"-nappi vaihtamaan näkymää, koska Päänäkymä on tehty vain yhden Activityn sisälle
-
     @Override
     public void onBackPressed() {
         if (secondViewActive) {
