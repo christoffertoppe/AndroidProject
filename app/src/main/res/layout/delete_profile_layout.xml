@@ -13,6 +13,7 @@
         android:layout_marginTop="4dp"
         android:gravity="center"
         android:text="@string/delete_profile"
+        android:textAlignment="center"
         android:textSize="56sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
