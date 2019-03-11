@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static final String PREF = "TestPref";  //Tallennuksessa käytetty avain
-    private boolean has_the_app_been_run_before; // Boolean, joka määrittelee käynnistetäänkö sovellus ensimmäistä kertaa
+    private boolean has_the_app_been_run_before = false; // Boolean, joka määrittelee käynnistetäänkö sovellus ensimmäistä kertaa
 
     private ProfileSingleton profile = ProfileSingleton.getInstance();
     private boolean secondViewActive = false;   // Boolean, joka määrittelee onko näytöllä "Valitse profiili"-layout vai "Uusi profiili"/"Poista profiili" -layout
@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Jos sovellus käynnistetään ensimmäistä kertaa
         } else {
+
             Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
 
             secondViewActive = true;
@@ -202,6 +203,8 @@ public class MainActivity extends AppCompatActivity {
     private void updateUI() {
         secondViewActive = false;
         setContentView(R.layout.activity_main);
+
+
 
         ListView lv = findViewById(R.id.profileListView);
         lv.setAdapter(new ArrayAdapter<Profile>(this, R.layout.profile_layout, ProfileSingleton.getInstance().getProfiles()));
