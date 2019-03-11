@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -25,13 +26,15 @@ import java.util.Random;
  * Keskellä aktiviteettia näkyy satunnaisia hampaiden terveyttä edistäviä vinkkejä, jotka
  * haetaan erillisestä listasta.
  *
- * @author
+ * @author Christoffer Tverin
  * @version 1.0
  */
 
 public class UserProfile extends AppCompatActivity {
     public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";
     private ProfileSingleton profile = ProfileSingleton.getInstance();
+
+    private ArrayList<String> tervehdys = new ArrayList<>();
 
     private int i;
 
@@ -60,6 +63,11 @@ public class UserProfile extends AppCompatActivity {
 
     }
 
+    /**
+     *  WelcomeText metodi tervehtii käyttäjää nimellä.
+     *
+     */
+
     private void welcomeText() {
         TextView tvWelcome = findViewById(R.id.welcomeText);
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
@@ -67,6 +75,10 @@ public class UserProfile extends AppCompatActivity {
         tvWelcome.setText("Terve,\n" + profile.getProfile(i).getName());
     }
 
+    /**
+     * washCount kertoo montako kertaa käyttäjä on pessyt hampaitaan.
+     *
+     */
 
     private void washCounter() {
         TextView tvWash = findViewById(R.id.washCount);
@@ -74,16 +86,32 @@ public class UserProfile extends AppCompatActivity {
         tvWash.setTypeface(typeface);
 
         int washCount = profile.getProfile(i).getBrushingTotal();
-        if (washCount == 0 || 1 < washCount && washCount < 150) {
-            tvWash.setText("Olet harjannut hampaitasi: " + Integer.toString(washCount) + " kertaa.");
-        } else if (washCount >= 150) {
-            tvWash.setText("Olet harjannut hampaitasi: " + Integer.toString(washCount) + " kertaa." + "\nOlisi hyvä vaihtaa hammasharja uuteen.");
-        } else {
+
+        if (washCount == 1) {
             tvWash.setText("Olet harjannut hampaitasi: " + Integer.toString(washCount) + " kerran.");
+        } else  {
+            tvWash.setText("Olet harjannut hampaitasi: " + Integer.toString(washCount) + " kertaa.");
+        }
+
+        if (profile.getProfile(i).getBrushingWithSameToothbrush() >= 150) {
+
+            Toast toast = Toast.makeText(getApplicationContext(), "Olisi hyvä vaihtaa hammasharja uuteen.\nKäy asetuksissa ottamassa uusi harja käyttöön.", Toast.LENGTH_LONG);
+            toast.show();
         }
     }
 
 
+
+    /**
+     *  showTip antaa käyttäjälle hampaidenpesuun liittyvä ohje.
+     *  showTip metodi hakee ensin kuinka monta riviä/ohjetta löytyy UsefulTips singeltonissa olevassa listassa
+     *  sen jälkeen se arpoo satunaisen luvun nollan ja maksimiarvon välillä
+     *  maksimiarvo on listankoko miinus yksi.
+     *  haetaan arvotun luvun riviltä ohje ja tallenetaan se.
+     *  etsitään tipView joka on textView ruutu.
+     *  annetaan tekstille fontti colophon.ttf
+     *  ja asetetaan se tipView ruutuun näkyviin
+     */
     private void showTip() {
         int listSize = UsefulTips.getInstance().getListSize();
         Random rand = new Random();
@@ -114,6 +142,7 @@ public class UserProfile extends AppCompatActivity {
         Button resetButton = findViewById(R.id.resetStatsButton);
         Button yesButton = findViewById(R.id.yesButton);
         Button noButton = findViewById(R.id.noButton);
+        Button newBrush = findViewById(R.id.newBrush);
 
         if (view == findViewById(R.id.resetStatsButton)) {
 
@@ -121,6 +150,8 @@ public class UserProfile extends AppCompatActivity {
             resetButton.setVisibility(View.INVISIBLE);
             yesButton.setVisibility(View.VISIBLE);
             noButton.setVisibility(View.VISIBLE);
+            newBrush.setVisibility(View.INVISIBLE);
+
 
         } else if (view == findViewById(R.id.noButton)) {
 
@@ -128,6 +159,7 @@ public class UserProfile extends AppCompatActivity {
             reset.setVisibility(View.INVISIBLE);
             yesButton.setVisibility(View.INVISIBLE);
             noButton.setVisibility(View.INVISIBLE);
+            newBrush.setVisibility(View.VISIBLE);
 
         } else if (view == findViewById(R.id.yesButton)) {
             profile.getProfile(i).setBrushingTotal(0);
@@ -137,6 +169,7 @@ public class UserProfile extends AppCompatActivity {
             reset.setVisibility(View.INVISIBLE);
             yesButton.setVisibility(View.INVISIBLE);
             noButton.setVisibility(View.INVISIBLE);
+            newBrush.setVisibility(View.VISIBLE);
 
             Toast resetSuccessful = Toast.makeText(getApplicationContext(), "Tilastot nollattu!", Toast.LENGTH_LONG);
             resetSuccessful.show();
@@ -200,6 +233,10 @@ public class UserProfile extends AppCompatActivity {
             Intent nextActivity = new Intent(UserProfile.this, Leaderboard.class);
             nextActivity.putExtra(EXTRA, i);
             startActivity(nextActivity);
+        } else if (view == findViewById(R.id.newBrush)) {
+            profile.getProfile(i).setBrushingWithSameToothbrush(0);
+            Toast resetSuccessful = Toast.makeText(getApplicationContext(), "Uusi harja otettu käyttöön", Toast.LENGTH_LONG);
+            resetSuccessful.show();
         }
     }
 

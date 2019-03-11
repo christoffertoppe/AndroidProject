@@ -11,12 +11,13 @@ public class Profile {
     /**
      * Profiilin nimi ja ikä.
      */
-    private String name;    // Käyttäjän nimi
-    private int age;        // Käyttäjän ikä
-    private int brushingSeconds;    // Käyttäjän hampaiden pesemiseen käytetty aika sekunteina
-    private int brushingTotal;      // Käyttäjän hampaiden pesemisen yksittäiset kerrat
-    private int selectedSong;       // Käyttäjän valitsema kappale
-    private int leaderboardRanking; // Käyttäjän sijoitus tulostaulukossa
+    private String name;                    // Käyttäjän nimi
+    private int age;                        // Käyttäjän ikä
+    private int brushingSeconds;            // Käyttäjän hampaiden pesemiseen käytetty aika sekunteina
+    private int brushingTotal;              // Käyttäjän hampaiden pesemisen yksittäiset kerrat
+    private int selectedSong;               // Käyttäjän valitsema kappale
+    private int leaderboardRanking;         // Käyttäjän sijoitus tulostaulukossa
+    private int brushingWithSameToothbrush; // Käyttäjän pesukertoja nykyisellä hammasharjalla
 
 
     /**
@@ -37,6 +38,7 @@ public class Profile {
         brushingTotal = 0;
         selectedSong = 0;
         leaderboardRanking = 1;
+        brushingWithSameToothbrush = 0;
     }
 
     /**
@@ -157,6 +159,25 @@ public class Profile {
 
     public void setBrushingTotal(int brushingTotal) {
         this.brushingTotal = brushingTotal;
+    }
+
+    /**
+     * Käyttäjän hampaiden pesukerrat kokonaisuudessaan nykyisellä hammasharjalla
+     * @return palauttaa nykyisen harjan käyttökerrat.
+     */
+    public int getBrushingWithSameToothbrush() {
+        return brushingWithSameToothbrush;
+    }
+
+    /**
+     * Asettaa uuden yksittäisten hampaiden pesukertojen arvon. Mahdollista nollata.
+     *
+     * @param brushingWithSameToothbrush aina kun pestään niin lisätään yksi.
+     *                                   jos käyttäjä vaihtaa uuteen harjaan,
+     *                                   hän painaa uusi harja ja laskuri aloittaa nollasta.
+     */
+    public void setBrushingWithSameToothbrush(int brushingWithSameToothbrush) {
+        this.brushingWithSameToothbrush = brushingWithSameToothbrush;
     }
 
     /**
