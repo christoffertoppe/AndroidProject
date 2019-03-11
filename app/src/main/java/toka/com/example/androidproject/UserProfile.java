@@ -34,7 +34,6 @@ public class UserProfile extends AppCompatActivity {
     public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";
     private ProfileSingleton profile = ProfileSingleton.getInstance();
 
-    private ArrayList<String> tervehdys = new ArrayList<>();
 
     private int i;
 
@@ -48,7 +47,8 @@ public class UserProfile extends AppCompatActivity {
      *
      * @param savedInstanceState Bundle pakettitiedosto
      */
-
+    // Aloitusvaiheessa tallenetaan porfiilin numero i ja suoritettaan
+    // metodit showTip(), washCounter, welcomeText.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +67,7 @@ public class UserProfile extends AppCompatActivity {
      *  WelcomeText metodi tervehtii käyttäjää nimellä.
      *
      */
-
+    // Tervehdys teksti käyttäjän nimellä.
     private void welcomeText() {
         TextView tvWelcome = findViewById(R.id.welcomeText);
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
@@ -77,9 +77,12 @@ public class UserProfile extends AppCompatActivity {
 
     /**
      * washCount kertoo montako kertaa käyttäjä on pessyt hampaitaan.
-     *
+     * Jos hampaita on pesty 150 kertaa tai enemmän tulee muistutus hammasharjan vaihdosta toast-tekstimuodossa.
      */
 
+    // Tulostaa ruudulle pesukerrat.
+    // jos käyttäjä on pessyt nykyisellä harjalla 150 tai enemmän kertaa niin tulee toast
+    // joka muistuttaa uudesta hammasharjasta.
     private void washCounter() {
         TextView tvWash = findViewById(R.id.washCount);
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
@@ -105,13 +108,15 @@ public class UserProfile extends AppCompatActivity {
     /**
      *  showTip antaa käyttäjälle hampaidenpesuun liittyvä ohje.
      *  showTip metodi hakee ensin kuinka monta riviä/ohjetta löytyy UsefulTips singeltonissa olevassa listassa
-     *  sen jälkeen se arpoo satunaisen luvun nollan ja maksimiarvon välillä
+     *  sen jälkeen arvotaan satunaisen luvun nollan ja maksimiarvon välillä
      *  maksimiarvo on listankoko miinus yksi.
      *  haetaan arvotun luvun riviltä ohje ja tallenetaan se.
      *  etsitään tipView joka on textView ruutu.
      *  annetaan tekstille fontti colophon.ttf
      *  ja asetetaan se tipView ruutuun näkyviin
      */
+
+    // showTip() tulostaa satunaisesti ohjeen UsefulTips singeltonista.
     private void showTip() {
         int listSize = UsefulTips.getInstance().getListSize();
         Random rand = new Random();
@@ -132,6 +137,10 @@ public class UserProfile extends AppCompatActivity {
      *
      * @param view View aktiviteetin näkymä
      */
+    // resetButtonPressed on metodi jolla voidaan nollata harjausasetuksia.
+    // Metodi on laitettu nappiin joka löytyy settings layoutissa
+    // kun sitä painaa tulee esille kyllä ja ei napit ja muut napit piilotetaan.
+    // jos KYLLÄ nappia painetaan käyttäjän harjaustiedot nollaantuu.
 
     public void resetButtonPressed(View view) {
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
@@ -185,7 +194,8 @@ public class UserProfile extends AppCompatActivity {
      *
      * @param view tarvittava näkymä
      */
-
+    // buttonPressed metodi annetaan kaikille napeille layoutissa ja if / else if lauseella
+    // tunnistetaan mikä nappi painettiin.
     public void buttonPressed(View view) {
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
         if (view == findViewById(R.id.startButton)) {
@@ -268,7 +278,7 @@ public class UserProfile extends AppCompatActivity {
      * taaksepäin siirtymisen "simuloimiseksi".
      */
 
-    // Ohjelmoidaan Androidin sisäinen "Back"-nappi vaihtamaan näkymää, koska Päänäkymä on tehty vain yhden Activityn sisälle
+    // Ohjelmoidaan Androidin sisäinen "Back"-nappi vaihtamaan näkymää, koska Päänäkymä on tehty vain yhden Activityn sisälle.
     @Override
     public void onBackPressed() {
         if (secondViewActive) {
@@ -285,7 +295,7 @@ public class UserProfile extends AppCompatActivity {
     /**
      * onResume-kutsun yhteydessä sovellus päivittää ruudulla näkyvät TextView-laatikot.
      */
-
+    // onResume() yhteydessä ajetaan metodin showTip, washCounter, welcomeText.
     @Override
     public void onResume() {
         super.onResume();

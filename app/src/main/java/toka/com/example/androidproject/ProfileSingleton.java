@@ -21,7 +21,7 @@ public class ProfileSingleton {
     /**
      * Profile-luokkaan viitatessa käytettävä metodi.
      *
-     * @return ProfileSingleton palauttaa uuden ProfileSingletonin
+     * @return ProfileSingleton palauttaa ProfileSingletonin
      */
 
     public static ProfileSingleton getInstance() {

@@ -172,9 +172,7 @@ public class Profile {
     /**
      * Asettaa uuden yksittäisten hampaiden pesukertojen arvon. Mahdollista nollata.
      *
-     * @param brushingWithSameToothbrush aina kun pestään niin lisätään yksi.
-     *                                   jos käyttäjä vaihtaa uuteen harjaan,
-     *                                   hän painaa uusi harja ja laskuri aloittaa nollasta.
+     * @param brushingWithSameToothbrush harjauskerrat nollasta ylöspäin
      */
     public void setBrushingWithSameToothbrush(int brushingWithSameToothbrush) {
         this.brushingWithSameToothbrush = brushingWithSameToothbrush;
