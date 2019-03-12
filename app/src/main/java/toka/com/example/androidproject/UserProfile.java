@@ -64,8 +64,7 @@ public class UserProfile extends AppCompatActivity {
     }
 
     /**
-     *  WelcomeText metodi tervehtii käyttäjää nimellä.
-     *
+     * WelcomeText metodi tervehtii käyttäjää nimellä.
      */
     // Tervehdys teksti käyttäjän nimellä.
     private void welcomeText() {
@@ -92,7 +91,7 @@ public class UserProfile extends AppCompatActivity {
 
         if (washCount == 1) {
             tvWash.setText("Olet harjannut hampaitasi: " + Integer.toString(washCount) + " kerran.");
-        } else  {
+        } else {
             tvWash.setText("Olet harjannut hampaitasi: " + Integer.toString(washCount) + " kertaa.");
         }
 
@@ -104,16 +103,15 @@ public class UserProfile extends AppCompatActivity {
     }
 
 
-
     /**
-     *  showTip antaa käyttäjälle hampaidenpesuun liittyvä ohje.
-     *  showTip metodi hakee ensin kuinka monta riviä/ohjetta löytyy UsefulTips singeltonissa olevassa listassa
-     *  sen jälkeen arvotaan satunaisen luvun nollan ja maksimiarvon välillä
-     *  maksimiarvo on listankoko miinus yksi.
-     *  haetaan arvotun luvun riviltä ohje ja tallenetaan se.
-     *  etsitään tipView joka on textView ruutu.
-     *  annetaan tekstille fontti colophon.ttf
-     *  ja asetetaan se tipView ruutuun näkyviin
+     * showTip antaa käyttäjälle hampaidenpesuun liittyvä ohje.
+     * showTip metodi hakee ensin kuinka monta riviä/ohjetta löytyy UsefulTips singeltonissa olevassa listassa
+     * sen jälkeen arvotaan satunaisen luvun nollan ja maksimiarvon välillä
+     * maksimiarvo on listankoko miinus yksi.
+     * haetaan arvotun luvun riviltä ohje ja tallenetaan se.
+     * etsitään tipView joka on textView ruutu.
+     * annetaan tekstille fontti colophon.ttf
+     * ja asetetaan se tipView ruutuun näkyviin
      */
 
     // showTip() tulostaa satunaisesti ohjeen UsefulTips singeltonista.
@@ -141,7 +139,6 @@ public class UserProfile extends AppCompatActivity {
     // Metodi on laitettu nappiin joka löytyy settings layoutissa
     // kun sitä painaa tulee esille kyllä ja ei napit ja muut napit piilotetaan.
     // jos KYLLÄ nappia painetaan käyttäjän harjaustiedot nollaantuu.
-
     public void resetButtonPressed(View view) {
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/colophon.ttf");
 

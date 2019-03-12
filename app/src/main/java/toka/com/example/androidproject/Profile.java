@@ -8,9 +8,6 @@ package toka.com.example.androidproject;
  * @version 1.0
  */
 public class Profile {
-    /**
-     * Profiilin nimi ja ikä.
-     */
     private String name;                    // Käyttäjän nimi
     private int age;                        // Käyttäjän ikä
     private int brushingSeconds;            // Käyttäjän hampaiden pesemiseen käytetty aika sekunteina
@@ -163,6 +160,7 @@ public class Profile {
 
     /**
      * Käyttäjän hampaiden pesukerrat kokonaisuudessaan nykyisellä hammasharjalla
+     *
      * @return palauttaa nykyisen harjan käyttökerrat.
      */
     public int getBrushingWithSameToothbrush() {

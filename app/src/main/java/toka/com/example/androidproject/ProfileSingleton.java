@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 public class ProfileSingleton {
-    private List<Profile> profiles;
+    private List<Profile> profiles; // Profile-oloista koosutva lista
     private static final ProfileSingleton ourInstance = new ProfileSingleton();
 
     /**

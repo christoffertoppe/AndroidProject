@@ -10,10 +10,23 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
 import com.google.gson.Gson;
+
 import java.util.List;
 import java.util.Locale;
+
 import pl.droidsonroids.gif.GifImageView;
+
+/**
+ * Brush-timer aktivitetti pitää sisällän ajastimen, jonka mukaan käyttäjä pesee hampaitaan.
+ * Ajastimen voi tauottaa, jatkaa tai lopettaa haluttuna ajankohtana.
+ * Hampaiden pesun aikana taustalla soi käyttäjän valitsema musiikki ja näytöllä
+ * animoitu majava harjaa hampaitaan käyttäjän mukana.
+ *
+ * @author Patrik Sneck
+ * @version 1.0
+ */
 
 public class BrushTimer extends AppCompatActivity {
     public static final String EXTRA = "toka.com.example.androidproject.MESSAGE";//sijaintitieto
@@ -31,21 +44,22 @@ public class BrushTimer extends AppCompatActivity {
     /**
      * Tekee sivun spawnaa majava gifin ja piilotaa sen odottamaan napin painallusta //;;\\
      * katsee if/elseif lausekeita päätelläkseen mitä soittaa
+     *
      * @param savedInstanceState
      */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_brush_timer);              //avaa brushtimer activityn
+        setContentView(R.layout.activity_brush_timer);              //avaa brushtimer layoutin
 
-        Bundle b = getIntent().getExtras();                         //sijoitetaaan edelisen aktiviiteetin tiedon muutujaan i
+        Bundle b = getIntent().getExtras();                         //sijoitetaaan edelisen aktiviiteetin tiedot muutujaan i
         i = b.getInt(EXTRA, 0);
 
-        GifImageView majavaView = findViewById(R.id.majavaGifView); // etsiii majava gifin ja piilottaasen näkyvistä
+        GifImageView majavaView = findViewById(R.id.majavaGifView); // etsiii majava gifin ja piilottaa sen näkyvistä
         majavaView.setVisibility(View.INVISIBLE);
 
-        if (profile.getProfile(i).getSelectedSong() == 0) {         // päätelee minkä musiikin pitäisisoida
+        if (profile.getProfile(i).getSelectedSong() == 0) {         // päätelee minkä musiikin pitäisi soida
             musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.artiss_happy);
         } else if (profile.getProfile(i).getSelectedSong() == 1) {
             musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.fmt_imagination_play);
@@ -54,7 +68,7 @@ public class BrushTimer extends AppCompatActivity {
         }
 
 
-        mTextViewCountDown = findViewById(R.id.text_view_countdown); //yhditää widgetit muutujaan
+        mTextViewCountDown = findViewById(R.id.text_view_countdown); //yhdistää widgetit muutujaan
         mButtonStartPause = findViewById(R.id.button_start_pause);
         mButtonStop = findViewById(R.id.button_reset);
 
@@ -110,7 +124,7 @@ public class BrushTimer extends AppCompatActivity {
                 mButtonStop.setVisibility(View.VISIBLE);                //  muuttaa stop nappulan näkyväksi
 
                 int lastTimeTotal = profile.getProfile(i).getBrushingWithSameToothbrush(); // hakee edellisten kertojen määrää samalla harjalla
-                profile.getProfile(i).setBrushingWithSameToothbrush(lastTimeTotal+1); // lisää yhden saman harjan laskuriin
+                profile.getProfile(i).setBrushingWithSameToothbrush(lastTimeTotal + 1); // lisää yhden saman harjan laskuriin
 
                 profile.getProfile(i).addBrushingTotal();               // lisää pesukerran profiiliin
                 int seconds = (int) (START_TIME_IN_MILLIS / 1000);      // muuttaa millisekuntit sekunteiksi
@@ -158,7 +172,7 @@ public class BrushTimer extends AppCompatActivity {
         profile.getProfile(i).addBrushingTotal();
 
         int lastTimeTotal = profile.getProfile(i).getBrushingWithSameToothbrush(); // hakee edellisten kertojen määrää samalla harjalla
-        profile.getProfile(i).setBrushingWithSameToothbrush(lastTimeTotal+1); // lisää yhden saman harjan laskuriin
+        profile.getProfile(i).setBrushingWithSameToothbrush(lastTimeTotal + 1); // lisää yhden saman harjan laskuriin
 
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
         updateCountDownText();
@@ -207,6 +221,7 @@ public class BrushTimer extends AppCompatActivity {
 
     /**
      * Paluttaa mainmenu viewiin
+     *
      * @param view
      */
     public void mainMenuButtonPressed(View view) {

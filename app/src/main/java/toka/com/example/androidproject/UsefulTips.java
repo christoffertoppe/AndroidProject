@@ -2,8 +2,8 @@ package toka.com.example.androidproject;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
- *
  * UsefulTips-luokasta määritelty Singleton-luokka, joka pitää sisällään
  * hampaidenhoito ohjeita.
  * UsefulTips-luokan avulla ohjeet pidetään yhdessä paikassa.
@@ -47,6 +47,7 @@ public class UsefulTips {
 
     /**
      * getTip palautaa yhden hoitoohjeen.
+     *
      * @param i kertoo miltä riviltä ohje haetaan listasta.
      * @return String palauttaa ohjeen String muodossa.
      */
@@ -58,6 +59,7 @@ public class UsefulTips {
 
     /**
      * getListSize palauttaa listakoon.
+     *
      * @return int palauttaa listakoon int arvona.
      */
     // palauttaa int luvun joka on listan koko.

@@ -19,6 +19,9 @@ import java.util.List;
  * niihin käytettyä aikaa sekunteina.
  * Aktiviteetin-käynnistämisen yhteydessä käyttäjien sijoitukset taulukossa päivitetään ja päivitetyt
  * tulokset piirretään ruutuun.
+ *
+ * @author Samuli Salin
+ * @version 1.0
  */
 
 public class Leaderboard extends AppCompatActivity {
