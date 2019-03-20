@@ -50,7 +50,7 @@
         android:id="@+id/resetStatsButton"
         android:layout_width="202dp"
         android:layout_height="48dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/amatic_sc"
         android:onClick="resetButtonPressed"
@@ -111,17 +111,17 @@
         android:id="@+id/newBrush"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="3dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/amatic_sc"
         android:onClick="buttonPressed"
         android:text="@string/BrushReset"
         android:textColor="@color/colorWhite"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/yesButton"
-        app:layout_constraintStart_toEndOf="@+id/noButton"
-        app:layout_constraintTop_toBottomOf="@+id/resetStatsTextView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resetStatsButton" />
 
 </android.support.constraint.ConstraintLayout>
